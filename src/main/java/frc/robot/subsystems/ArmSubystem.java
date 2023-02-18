@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,7 +14,7 @@ public class ArmSubystem extends SubsystemBase{
     public final TalonFX armMotorShoulderMaster;
     public final TalonFX armMotorWristJoint;
 
-    public final TalonFXSensorCollection armShoulderMasterEnc;
+    public final Encoder armShoulderMasterEnc;
     public final TalonFXSensorCollection armWristJointEnc;
 
     //init stuff
@@ -22,10 +23,9 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster = new TalonFX(Constants.armMotorShoulderMasterID);
         armMotorWristJoint = new TalonFX(Constants.armMotorWristJointID);
 
-        armShoulderMasterEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
+        armShoulderMasterEnc = new Encoder(0, 1);
         armWristJointEnc = new TalonFXSensorCollection(armMotorWristJoint);
-
-       /* 
+       
         //config PID
         armMotorShoulderMaster.config_kF(0, Constants.armBasekF);
         armMotorShoulderMaster.config_kP(0, Constants.armBasekP);
@@ -42,22 +42,22 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
         armMotorWristJoint.configClosedLoopPeakOutput(0, Constants.armWristClosedMaxOutput);
         armMotorWristJoint.configClosedloopRamp(Constants.armWristClosedRampRate);
-        */
+        
     }
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Base Arm Joint Encoder Absolute Position", armShoulderMasterEnc.getIntegratedSensorAbsolutePosition());
+        SmartDashboard.putNumber("Base Arm Joint Encoder Absolute Position", armShoulderMasterEnc.get());
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Absolute Position", armWristJointEnc.getIntegratedSensorAbsolutePosition());
-        SmartDashboard.putNumber("Base Arm Joint Encoder Position", armShoulderMasterEnc.getIntegratedSensorPosition());
+        SmartDashboard.putNumber("Base Arm Joint Encoder Position", armShoulderMasterEnc.get());
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Position", armWristJointEnc.getIntegratedSensorPosition());
     }
     
     public void resetEncoders(){
         //reset arm encoders (use in loading, low position)
-        armShoulderMasterEnc.setIntegratedSensorPosition(0, 15);
+        //armShoulderMasterEnc.setIntegratedSensorPosition(0, 15);
         //armShoulderSlaveEnc.setIntegratedSensorPosition(0, 15);
-        armWristJointEnc.setIntegratedSensorPosition(0, 15);
+        //armWristJointEnc.setIntegratedSensorPosition(0, 15);
     }
 
     public void moveLow(){
@@ -86,7 +86,7 @@ public class ArmSubystem extends SubsystemBase{
 
     public void moveManual(XboxController controller){
         //move arm manually
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.4*controller.getRawAxis(Constants.manualShoulderAxis));
-        armMotorWristJoint.set(ControlMode.PercentOutput, 0.4*controller.getRawAxis(Constants.manualWristAxis));
+        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
+        armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualWristAxis));
     }
 }

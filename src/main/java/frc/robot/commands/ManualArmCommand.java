@@ -17,7 +17,7 @@ public class ManualArmCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        //m_armSubsystem.resetEncoders();
+        m_armSubsystem.resetEncoders();
     }
         
     @Override

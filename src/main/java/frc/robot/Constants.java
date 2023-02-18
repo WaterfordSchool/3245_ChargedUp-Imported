@@ -87,7 +87,7 @@ public final class Constants {
     //operator controls
         //axes
         public static final int manualShoulderAxis = 1;
-        public static final int manualWristAxis = 2;
+        public static final int manualWristAxis =5;
 
         public static final int manualElevatorAxis = 3; 
 
