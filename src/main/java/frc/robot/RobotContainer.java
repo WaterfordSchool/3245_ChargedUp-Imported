@@ -53,7 +53,6 @@ public class RobotContainer {
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
     m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     //m_clawV2Subsystem.setDefaultCommand(new ManualClawV2RunCommand(m_clawV2Subsystem, operator));
-    //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     
     //choosable auto
     m_chooser.setDefaultOption("no balance", m_autonomousNoBalanceCommand);
