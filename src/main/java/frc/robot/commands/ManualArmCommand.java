@@ -22,6 +22,7 @@ public class ManualArmCommand extends CommandBase{
         
     @Override
     public void execute() {
+        m_armSubsystem.resetEncoders();
         m_armSubsystem.moveManual(m_controller);
     }
 
