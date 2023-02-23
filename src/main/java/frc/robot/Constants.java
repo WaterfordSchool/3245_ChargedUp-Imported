@@ -87,6 +87,7 @@ public final class Constants {
     //operator controls
         //axes
         public static final int manualShoulderAxis = 1;
+        
         public static final int manualWristAxis =5;
 
         public static final int manualElevatorAxis = 3; 
@@ -102,6 +103,7 @@ public final class Constants {
         public static final int manualFlangeInButton = 4;
         public static final int manualFlangeOutButton = 5;
         public static final int currentSlideButton = 6;
+        public static final int shoulderHomeButton = 7;
 
         //encoder values
         public static final double elevatorUpPos = 0;

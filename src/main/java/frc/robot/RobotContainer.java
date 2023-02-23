@@ -11,6 +11,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoCommandBalance;
 import frc.robot.commands.AutoCommandNoBalance;
 import frc.robot.commands.ManualArmCommand;
+import frc.robot.commands.SetArmCommand;
 import frc.robot.commands.Spinjitsu;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.DriveTrain;
@@ -65,12 +66,15 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton fastButton = new JoystickButton(driver, Constants.fastButton);
     JoystickButton slowButton = new JoystickButton(driver, Constants.slowButton);
+    JoystickButton armHome = new JoystickButton(operator, Constants.shoulderHomeButton);
     POVButton spinjitsuButton1 = new POVButton(driver, 90);
 
 
     fastButton.whileHeld(m_fastDrive);
     slowButton.whileHeld(m_slowDrive);
     spinjitsuButton1.whileHeld(m_spinjitsu1);
+    
+    //armHome.whileHeld(new SetArmCommand(m_armSubsystem, "low"));
     
     /*
     command groups: .whenPressed
@@ -83,6 +87,7 @@ public class RobotContainer {
     armup.wheninactive(new manual)
     armdown.wheninactive(new manual)
     */
+    
     
   }
 
