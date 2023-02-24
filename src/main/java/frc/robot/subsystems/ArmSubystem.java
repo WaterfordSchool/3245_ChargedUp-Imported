@@ -62,27 +62,28 @@ public class ArmSubystem extends SubsystemBase{
 
     public void moveLow(){
         //set arm to low encoder positions
-        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderDownPos);
+        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderDownPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
     }
 
     public void moveMid(){
         //setarm to mid encoder positions
-        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderMidPos);
+        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderMidPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
     }
 
     public void moveHigh(){
         //set arm to high encoder positions
-        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderUpPos);
+        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderUpPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
     }
 
-    public void moveBack(){
+    public void moveHome(){
         //set arm to 0 encoder positions
-        armMotorShoulderMaster.set(ControlMode.Position, 0);
-        armMotorWristJoint.set(ControlMode.Position, 0);
+        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderHomePos);
+        armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
     }
+
 
     public void moveManual(XboxController controller){
         //move arm manually

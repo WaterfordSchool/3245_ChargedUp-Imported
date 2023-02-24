@@ -29,6 +29,10 @@ public class SetArmCommand extends CommandBase{
         if(m_armHeight == "low"){
             m_armSubsystem.moveLow();
         }
+
+        if(m_armHeight == "home"){
+            m_armSubsystem.moveHome();
+        }
     }
 
     @Override

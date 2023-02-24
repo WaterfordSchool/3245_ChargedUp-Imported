@@ -66,13 +66,23 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton fastButton = new JoystickButton(driver, Constants.fastButton);
     JoystickButton slowButton = new JoystickButton(driver, Constants.slowButton);
-    JoystickButton armHome = new JoystickButton(operator, Constants.shoulderHomeButton);
+    JoystickButton armHome = new JoystickButton(operator, Constants.armHomeButton);
+    JoystickButton armLow = new JoystickButton(operator, Constants.armLowButton);
+    JoystickButton armMid = new JoystickButton(operator, Constants.armMidButton);
+    JoystickButton armHigh = new JoystickButton(operator, Constants.armHighButton);
+
     POVButton spinjitsuButton1 = new POVButton(driver, 90);
 
 
     fastButton.whileHeld(m_fastDrive);
     slowButton.whileHeld(m_slowDrive);
     spinjitsuButton1.whileHeld(m_spinjitsu1);
+
+    armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home"));
+    armLow.whileHeld(new SetArmCommand(m_armSubsystem, "low"));
+    armMid.whileHeld(new SetArmCommand(m_armSubsystem, "mid"));
+    armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high"));
+
     
     //armHome.whileHeld(new SetArmCommand(m_armSubsystem, "low"));
     
