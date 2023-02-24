@@ -50,9 +50,9 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void drive(XboxController driveController, double kSpeed, double kTurnSpeed) {
-    dT.arcadeDrive(driveController.getRawAxis(0) * kTurnSpeed, driveController.getRawAxis(3) * kSpeed);
+    dT.arcadeDrive(driveController.getRawAxis(0) * kTurnSpeed, -driveController.getRawAxis(3) * kSpeed);
     if(driveController.getRawAxis(2) > 0){
-    dT.arcadeDrive(driveController.getRawAxis(0) * kTurnSpeed, -driveController.getRawAxis(2) * kSpeed);
+    dT.arcadeDrive(driveController.getRawAxis(0) * kTurnSpeed, driveController.getRawAxis(2) * kSpeed);
   }
 }
 
