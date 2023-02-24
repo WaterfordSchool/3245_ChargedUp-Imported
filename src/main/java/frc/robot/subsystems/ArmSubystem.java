@@ -14,8 +14,8 @@ public class ArmSubystem extends SubsystemBase{
     public final TalonFX armMotorShoulderMaster;
     public final TalonFX armMotorWristJoint;
 
-    //public final Encoder armShoulderMasterEnc;
-    public final TalonFXSensorCollection armShoulderEnc;
+    public final Encoder armShoulderMasterEnc;
+    //public final TalonFXSensorCollection armShoulderEnc;
     public final TalonFXSensorCollection armWristJointEnc;
 
     //init stuff
@@ -24,8 +24,8 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster = new TalonFX(Constants.armMotorShoulderMasterID);
         armMotorWristJoint = new TalonFX(Constants.armMotorWristJointID);
 
-        //armShoulderMasterEnc = new Encoder(0, 1);
-        armShoulderEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
+        armShoulderMasterEnc = new Encoder(0, 1);
+        //armShoulderEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
         armWristJointEnc = new TalonFXSensorCollection(armMotorWristJoint);
        
         //config PID
@@ -49,17 +49,16 @@ public class ArmSubystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Base Arm Joint Encoder Absolute Position", armShoulderEnc.getIntegratedSensorAbsolutePosition());
+        //SmartDashboard.putNumber("Shoulder Arm Joint Encoder Absolute Position", armShoulderMasterEnc.get());
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Absolute Position", armWristJointEnc.getIntegratedSensorAbsolutePosition());
-        SmartDashboard.putNumber("Base Arm Joint Encoder Position", armShoulderEnc.getIntegratedSensorPosition());
+        SmartDashboard.putNumber("Shoulder Arm Joint Encoder Position", armShoulderMasterEnc.get());
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Position", armWristJointEnc.getIntegratedSensorPosition());
     }
     
     public void resetEncoders(){
         //reset arm encoders (use in loading, low position)
-        //armShoulderMasterEnc.setIntegratedSensorPosition(0, 15);
-        //armShoulderSlaveEnc.setIntegratedSensorPosition(0, 15);
-        //armWristJointEnc.setIntegratedSensorPosition(0, 15);
+        armShoulderMasterEnc.reset();
+        armWristJointEnc.setIntegratedSensorPosition(0, 15);
     }
 
     public void moveLow(){
