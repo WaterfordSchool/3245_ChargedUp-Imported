@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -24,9 +25,12 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster = new TalonFX(Constants.armMotorShoulderMasterID);
         armMotorWristJoint = new TalonFX(Constants.armMotorWristJointID);
 
-        armShoulderMasterEnc = new Encoder(0, 1);
+        armShoulderMasterEnc = new Encoder(2, 3);
+        //yellow in port 3
+        //blue in port 2
         //armShoulderEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
         armWristJointEnc = new TalonFXSensorCollection(armMotorWristJoint);
+        armMotorShoulderMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 15);
        
         //config PID
         armMotorShoulderMaster.config_kF(0, Constants.armBasekF);
@@ -44,6 +48,7 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
         armMotorWristJoint.configClosedLoopPeakOutput(0, Constants.armWristClosedMaxOutput);
         armMotorWristJoint.configClosedloopRamp(Constants.armWristClosedRampRate);
+        armMotorShoulderMaster.setSensorPhase(false);
         
     }
 
@@ -63,32 +68,32 @@ public class ArmSubystem extends SubsystemBase{
 
     public void moveLow(){
         //set arm to low encoder positions
-        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderDownPos);
+        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderDownPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
     }
 
     public void moveMid(){
         //setarm to mid encoder positions
-        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderMidPos);
+        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderMidPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
     }
 
     public void moveHigh(){
         //set arm to high encoder positions
-        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderUpPos);
+        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderUpPos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
     }
 
     public void moveHome(){
         //set arm to 0 encoder positions
-        //armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderHomePos);
+        armMotorShoulderMaster.set(ControlMode.Position, Constants.shoulderHomePos);
         armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
     }
 
 
     public void moveManual(XboxController controller){
         //move arm manually
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
+        armMotorShoulderMaster.set(ControlMode.PercentOutput, -0.2*controller.getRawAxis(Constants.manualShoulderAxis));
         armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualWristAxis));
     }
 }

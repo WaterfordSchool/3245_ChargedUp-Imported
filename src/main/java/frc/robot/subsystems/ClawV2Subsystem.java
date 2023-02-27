@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ClawV2Subsystem extends SubsystemBase{
-    public final CANSparkMax clawv2flange;
+    //public final CANSparkMax clawv2flange;
     public final CANSparkMax clawv2claw;
     public final DigitalInput limSwitchClaw;
 
     
       public ClawV2Subsystem() {
-        clawv2flange = new CANSparkMax(Constants.clawV2flangeMotorID, MotorType.kBrushless);
+        //clawv2flange = new CANSparkMax(Constants.clawV2flangeMotorID, MotorType.kBrushless);
         clawv2claw = new CANSparkMax(Constants.clawV2clawMotorID, MotorType.kBrushless);
         limSwitchClaw = new DigitalInput(0);
       }
@@ -35,21 +35,23 @@ public class ClawV2Subsystem extends SubsystemBase{
             clawv2claw.set(0.25);
         }
         //flange in
-        if(controller.getRawButton(Constants.manualFlangeInButton)){
+        /*if(controller.getRawButton(Constants.manualFlangeInButton)){
             clawv2flange.set(-0.25);
        }
         //flange out
         if(controller.getRawButton(Constants.manualFlangeOutButton)){
             clawv2flange.set(0.25);
-        }
+        }*/
         //inactive claw
         if(!controller.getRawButton(Constants.manualClawInButton) && !controller.getRawButton(Constants.manualClawSpitButton)){
             clawv2claw.set(0);
         }
         //inactive flange
-        if(!controller.getRawButton(Constants.manualFlangeInButton) && !controller.getRawButton(Constants.manualFlangeOutButton)){
+        /*if(!controller.getRawButton(Constants.manualFlangeInButton) && !controller.getRawButton(Constants.manualFlangeOutButton)){
             clawv2flange.set(0);
-        }
+        }*/
+
+        //clawv2claw.set(0.6*controller.getRawAxis(Constants.manualClawCloseAxis));
 
     }
     public void closeWithLimSwitch(){
@@ -67,7 +69,7 @@ public class ClawV2Subsystem extends SubsystemBase{
 
     public void stopSpin(){
         clawv2claw.set(0);
-        clawv2flange.set(0);
+        //clawv2flange.set(0);
     }
 
 }
