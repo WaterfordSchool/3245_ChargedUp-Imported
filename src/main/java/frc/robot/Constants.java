@@ -37,11 +37,10 @@ public final class Constants {
         public static final double clawContactCurrentValue = 0;
         public static final double clawNoContactSpeed = 0.1;
 
-        public static final double armBaseClosedRampRate = 0.7;
-        public static final double armWristClosedRampRate = 0.7;
+        public static final double armBaseClosedRampRate = 0.5;
+        public static final double armWristClosedRampRate = 0.4;
         public static final double armBaseClosedMaxOutput = 0.2;
-        public static final double armWristClosedMaxOutput = 0.1;
-        public static final double armShoulderMaxVelocity = 10;
+        public static final double armWristClosedMaxOutput = 0.15;
 
         public static final double clawDriveClosedrampRate = 0.4;
         public static final double clawDriveClosedMaxOutput = 0.15;
@@ -51,12 +50,12 @@ public final class Constants {
         //PID
         public static final double elevatorkF = 0.0;
         public static final double elevatorkP = 0.15;
-        public static final double elevatorkI = 0.0;
+        public static final double elevatorkI = 0.15;
         public static final double elevatorkD = 0.0;
 
         public static final double armBasekF = 0.0;
         public static final double armBasekP = 0.15;
-        public static final double armBasekI = 0.0;
+        public static final double armBasekI = 0.15;
         public static final double armBasekD = 0.0;
 
         public static final double armWristkF = 0.0;
@@ -104,25 +103,29 @@ public final class Constants {
         public static final int manualFlangeInButton = 12;
         public static final int manualFlangeOutButton = 13;
         public static final int currentSlideButton = 14;
-        public static final int armHomeButton = 1;
-        public static final int armLowButton = 2;
-        public static final int armMidButton = 3;
-        public static final int armHighButton = 4;
+        public static final int armHomeButton = 1; //a
+        public static final int armLowButton = 2; //b
+        public static final int armMidButton = 3; //x
+        public static final int armHighButton = 4; //y
 
         //encoder values
         public static final double elevatorUpPos = 0;
         public static final double elevatorMidPos = 0;
         public static final double elevatorDownPos = 0;
 
-        public static final double shoulderUpPos = 440;
-        public static final double shoulderMidPos = 270;
+        public static final double shoulderUpPos = 300;
+        public static final double shoulderMidPos = 200;
         public static final double shoulderDownPos = 100;
         public static final double shoulderHomePos = 0;
 
-        public static final double wristUpPos = 200;
-        public static final double wristMidPos = 15000;
-        public static final double wristDownPos = 20000;
-        public static final double wristHomePos = 200;
+        public static final double wristUpPos = 40000;
+        public static final double wristMidPos = 40000;
+        public static final double wristDownPos = 38000;
+        public static final double wristHomePos = 174;
+//low: 11, 38000
+//mid: 300, 62000
+//high: 430, 74000
+//home: 0, 174
 
     //sensors
         //gyro
