@@ -41,7 +41,7 @@ public final class Constants {
         public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
         public static final double armBaseClosedMaxOutput = 0.35;
-        public static final double armWristClosedMaxOutput = 0.15;
+        public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
         public static final double clawDriveClosedMaxOutput = 0.15;
