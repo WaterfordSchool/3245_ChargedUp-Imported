@@ -37,9 +37,9 @@ public final class Constants {
         public static final double clawContactCurrentValue = 0;
         public static final double clawNoContactSpeed = 0.1;
 
-        public static final double armBaseClosedRampRate = 0.5;
+        public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.2;
+        public static final double armBaseClosedMaxOutput = 0.05;
         public static final double armWristClosedMaxOutput = 0.15;
 
         public static final double clawDriveClosedrampRate = 0.4;
@@ -54,9 +54,9 @@ public final class Constants {
         public static final double elevatorkD = 0.0;
 
         public static final double armBasekF = 0.0;
-        public static final double armBasekP = 0.15;
-        public static final double armBasekI = 0.15;
-        public static final double armBasekD = 0.0;
+        public static final double armBasekP = -0.2;
+        public static final double armBasekI = 0.0;
+        public static final double armBasekD = 0.15;
 
         public static final double armWristkF = 0.0;
         public static final double armWristkP = 0.15;
