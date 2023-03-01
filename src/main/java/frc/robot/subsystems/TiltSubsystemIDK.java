@@ -17,7 +17,7 @@ public class TiltSubsystemIDK extends SubsystemBase{
     //init stuff
     public TiltSubsystemIDK(){
         //arm motors/encoders
-        tilt = new TalonFX(Constants.tiltMotorID);
+        tilt = new TalonFX(Constants.armMotorWristJointID);
         tiltEnc = new TalonFXSensorCollection(tilt);
 
         //config PID
@@ -58,6 +58,6 @@ public class TiltSubsystemIDK extends SubsystemBase{
 
     public void moveManual(XboxController controller){
         //tilt manually
-        tilt.set(ControlMode.PercentOutput, Constants.tiltMaxOutput*controller.getRawAxis(Constants.manualTiltAxis));
+        tilt.set(ControlMode.PercentOutput, Constants.tiltMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
     }
 }
