@@ -19,8 +19,10 @@ public class ArmSubystem extends SubsystemBase{
 
     public final Encoder armShoulderMasterEnc;
     public final TalonFXSensorCollection armWristJointEnc;
+    public final TalonFXSensorCollection shoulderIntegratedEnc;
     public final PIDController shoulderPID;
-    public double m_shoulderSetpoint;
+    public double encoderDistance;
+    public double encoderSetPoint;
 
     //init stuff
     public ArmSubystem(){
@@ -28,34 +30,37 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster = new TalonFX(Constants.armMotorShoulderMasterID);
         armMotorWristJoint = new TalonFX(Constants.armMotorWristJointID);
         shoulderPID = new PIDController(Constants.armBasekP, Constants.armBasekI, Constants.armBasekD);
-        m_shoulderSetpoint = 0;
         armShoulderMasterEnc = new Encoder(2, 3);
+        shoulderIntegratedEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
+        encoderDistance = 0;
+        encoderSetPoint = 0;
 
         //yellow in port 3
         //blue in port 2
         //armShoulderEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
         armWristJointEnc = new TalonFXSensorCollection(armMotorWristJoint);
-        
-        //config PID
-        armMotorShoulderMaster.config_kF(0, Constants.armBasekF);
-        armMotorShoulderMaster.config_kP(0, Constants.armBasekP);
-        armMotorShoulderMaster.config_kI(0, Constants.armBasekI);
-        armMotorShoulderMaster.config_kD(0, Constants.armBasekD);
 
+        //pid
         armMotorWristJoint.config_kF(0, Constants.armWristkF);
         armMotorWristJoint.config_kP(0, Constants.armWristkP);
         armMotorWristJoint.config_kI(0, Constants.armWristkI);
         armMotorWristJoint.config_kD(0, Constants.armWristkD);
 
+        armMotorShoulderMaster.config_kF(0, 0);
+        armMotorShoulderMaster.config_kP(0, 0.15);
+        armMotorShoulderMaster.config_kI(0, 0);
+        armMotorShoulderMaster.config_kD(0, 0);
+
         //config max output
         armMotorShoulderMaster.configClosedLoopPeakOutput(0, Constants.armBaseClosedMaxOutput);
-        armMotorShoulderMaster.configPeakOutputForward(0.05);
-        armMotorShoulderMaster.configPeakOutputReverse(-0.05);
-        armMotorShoulderMaster.configOpenloopRamp(0.7);
-        armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
+        armMotorShoulderMaster.configPeakOutputForward(0.2);
+        armMotorShoulderMaster.configPeakOutputReverse(-0.2);
+        //armMotorShoulderMaster.configOpenloopRamp(0.7);
+        //armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
 
+        armMotorShoulderMaster.setInverted(true);
         armMotorWristJoint.configClosedLoopPeakOutput(0, Constants.armWristClosedMaxOutput);
-        armMotorWristJoint.configClosedloopRamp(Constants.armWristClosedRampRate);
+        //armMotorWristJoint.configClosedloopRamp(Constants.armWristClosedRampRate);
     }
 
     @Override
@@ -64,7 +69,7 @@ public class ArmSubystem extends SubsystemBase{
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Absolute Position", armWristJointEnc.getIntegratedSensorAbsolutePosition());
         SmartDashboard.putNumber("Shoulder Arm Joint Encoder Position", armShoulderMasterEnc.get());
         SmartDashboard.putNumber("Wrist Arm Joint Encoder Position", armWristJointEnc.getIntegratedSensorPosition());
-        SmartDashboard.putNumber("whatever the shoulder is reading", armMotorShoulderMaster.getSelectedSensorPosition());
+        //encoderDistance = shoulderPID.calculate(armShoulderMasterEnc.getDistance(), encoderSetPoint);
     }
     
     public void resetEncoders(){
@@ -75,39 +80,46 @@ public class ArmSubystem extends SubsystemBase{
 
     public void moveLow(){
         //set arm to low encoder positions
-        //armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
-        m_shoulderSetpoint = Constants.shoulderDownPos;
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*shoulderPID.calculate(armShoulderMasterEnc.getDistance(), m_shoulderSetpoint));
+        armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
+       encoderSetPoint = Constants.shoulderDownPos;
+       //armMotorShoulderMaster.set(ControlMode.PercentOutput, encoderDistance);
+       // armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderDownPos));
+
+        armMotorShoulderMaster.set(ControlMode.Position, -16000);
+
     }
 
     public void moveMid(){
         //setarm to mid encoder positions
-        //armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
-        m_shoulderSetpoint = Constants.shoulderMidPos;
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*shoulderPID.calculate(armShoulderMasterEnc.getDistance(), m_shoulderSetpoint));
+        armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
+
+        //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderMidPos));
+        armMotorShoulderMaster.set(ControlMode.Position, -36000);
+
     }
 
     public void moveHigh(){
         //set arm to high encoder positions
-        //armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
-        m_shoulderSetpoint = Constants.shoulderUpPos;
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*shoulderPID.calculate(armShoulderMasterEnc.getDistance(), m_shoulderSetpoint));
+        armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
+        
+        //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderUpPos));
+        armMotorShoulderMaster.set(ControlMode.Position, -45000);
+
     }
 
     public void moveHome(){
         //set arm to 0 encoder positions
-        //tryingMyGoddamnBestPID.setSetpoint(Constants.shoulderHomePos);
+        armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
+       
+        //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderHomePos));
+        armMotorShoulderMaster.set(ControlMode.Position, 0);
 
-        //armMotorShoulderMaster.set(ControlMode.Position, tryingMyGoddamnBestPID.getSetpoint());
-        //armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
-        m_shoulderSetpoint = Constants.shoulderHomePos;
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), m_shoulderSetpoint));
     }
 
 
     public void moveManual(XboxController controller){
         //move arm manually
-        armMotorShoulderMaster.set(ControlMode.PercentOutput, -0.2*controller.getRawAxis(Constants.manualShoulderAxis));
+        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
         armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualWristAxis));
     }
 }

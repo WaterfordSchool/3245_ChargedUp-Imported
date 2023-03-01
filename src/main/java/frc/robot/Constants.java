@@ -27,6 +27,7 @@ public final class Constants {
         public static final int tiltMotorID = 12;
     //gains, PID
         //ramping, max/mins
+        //37000, 26000, 10000
         public static final double driveRampRate = 0.3;
 
         public static final double elevatorClosedRampRate = 0.4;
@@ -39,7 +40,7 @@ public final class Constants {
 
         public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.05;
+        public static final double armBaseClosedMaxOutput = 0.27;
         public static final double armWristClosedMaxOutput = 0.15;
 
         public static final double clawDriveClosedrampRate = 0.4;
@@ -53,10 +54,10 @@ public final class Constants {
         public static final double elevatorkI = 0.15;
         public static final double elevatorkD = 0.0;
 
-        public static final double armBasekF = 0.0;
-        public static final double armBasekP = -0.2;
-        public static final double armBasekI = 0.0;
-        public static final double armBasekD = 0.15;
+        public static final double armBasekF = 0;
+        public static final double armBasekP = 0;
+        public static final double armBasekI = 0;
+        public static final double armBasekD = 0.4;
 
         public static final double armWristkF = 0.0;
         public static final double armWristkP = 0.15;
@@ -120,8 +121,8 @@ public final class Constants {
 
         public static final double wristUpPos = 40000;
         public static final double wristMidPos = 40000;
-        public static final double wristDownPos = 38000;
-        public static final double wristHomePos = 174;
+        public static final double wristDownPos = 30000;
+        public static final double wristHomePos = 450;
 //low: 11, 38000
 //mid: 300, 62000
 //high: 430, 74000
