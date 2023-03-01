@@ -78,41 +78,93 @@ public class ArmSubystem extends SubsystemBase{
         armWristJointEnc.setIntegratedSensorPosition(0, 15);
     }
 
-    public void moveLow(){
+    public void moveLow(XboxController controllerOverride){
         //set arm to low encoder positions
         armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
        encoderSetPoint = Constants.shoulderDownPos;
        //armMotorShoulderMaster.set(ControlMode.PercentOutput, encoderDistance);
        // armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderDownPos));
 
-        armMotorShoulderMaster.set(ControlMode.Position, -16000);
+        //armMotorShoulderMaster.set(ControlMode.Position, -16000);
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
+            armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)==0){
+            armMotorShoulderMaster.set(ControlMode.Position, -16000);
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)!=0){
+            armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualWristAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)==0){
+            armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
+        }
 
     }
 
-    public void moveMid(){
+    public void moveMid(XboxController controllerOverride){
         //setarm to mid encoder positions
         armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
 
         //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderMidPos));
-        armMotorShoulderMaster.set(ControlMode.Position, -36000);
+        //armMotorShoulderMaster.set(ControlMode.Position, -36000);
+
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
+            armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)==0){
+            armMotorShoulderMaster.set(ControlMode.Position, -36000);
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)!=0){
+            armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualWristAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)==0){
+            armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
+        }
 
     }
 
-    public void moveHigh(){
+    public void moveHigh(XboxController controllerOverride){
         //set arm to high encoder positions
         armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
         
         //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderUpPos));
-        armMotorShoulderMaster.set(ControlMode.Position, -45000);
+        //trying something new
+        //armMotorShoulderMaster.set(ControlMode.Position, -45000);
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
+            armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)==0){
+            armMotorShoulderMaster.set(ControlMode.Position, -45000);
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)!=0){
+            armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualWristAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)==0){
+            armMotorWristJoint.set(ControlMode.Position, Constants.wristUpPos);
+        }
 
     }
 
-    public void moveHome(){
+    public void moveHome(XboxController controllerOverride){
         //set arm to 0 encoder positions
-        armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
+        //armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
        
         //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderHomePos));
-        armMotorShoulderMaster.set(ControlMode.Position, 0);
+        //armMotorShoulderMaster.set(ControlMode.Position, 0);
+
+        //trying something new
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
+            armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)==0){
+            armMotorShoulderMaster.set(ControlMode.Position, 0);
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)!=0){
+            armMotorWristJoint.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualWristAxis));
+        }
+        if(controllerOverride.getRawAxis(Constants.manualWristAxis)==0){
+            armMotorWristJoint.set(ControlMode.Position, Constants.wristHomePos);
+        }
 
     }
 

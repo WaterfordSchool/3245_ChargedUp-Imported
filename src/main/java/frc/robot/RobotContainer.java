@@ -57,7 +57,7 @@ public class RobotContainer {
   public RobotContainer() {
     //default commands
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
-    m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
+    //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     m_clawV2Subsystem.setDefaultCommand(new ManualClawV2RunCommand(m_clawV2Subsystem, operator));
     
     //choosable auto
@@ -83,10 +83,10 @@ public class RobotContainer {
     slowButton.whileHeld(m_slowDrive);
     spinjitsuButton1.whileHeld(m_spinjitsu1);
 
-    armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home"));
-    armLow.whileHeld(new SetArmCommand(m_armSubsystem, "low"));
-    armMid.whileHeld(new SetArmCommand(m_armSubsystem, "mid"));
-    armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high"));
+    armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home", operator));
+    armLow.whileHeld(new SetArmCommand(m_armSubsystem, "low", operator));
+    armMid.whileHeld(new SetArmCommand(m_armSubsystem, "mid", operator));
+    armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high", operator));
 
     
     //armHome.whileHeld(new SetArmCommand(m_armSubsystem, "low"));

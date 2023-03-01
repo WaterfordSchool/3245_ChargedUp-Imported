@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubystem;
 
@@ -7,10 +8,12 @@ public class SetArmCommand extends CommandBase{
 
     private final ArmSubystem m_armSubsystem;
     private final String m_armHeight;
+    private final XboxController m_controllerOverride;
     
-    public SetArmCommand(ArmSubystem armSubystem, String armHeight){
+    public SetArmCommand(ArmSubystem armSubystem, String armHeight, XboxController controllerOverride){
         m_armSubsystem = armSubystem;
         m_armHeight = armHeight;
+        m_controllerOverride = controllerOverride;
         addRequirements(m_armSubsystem);
     }
 
@@ -21,17 +24,17 @@ public class SetArmCommand extends CommandBase{
     @Override
     public void execute() {
         if(m_armHeight == "high"){
-            m_armSubsystem.moveHigh();
+            m_armSubsystem.moveHigh(m_controllerOverride);
         }
         if(m_armHeight == "mid"){
-            m_armSubsystem.moveMid();
+            m_armSubsystem.moveMid(m_controllerOverride);
         }
         if(m_armHeight == "low"){
-            m_armSubsystem.moveLow();
+            m_armSubsystem.moveLow(m_controllerOverride);
         }
 
         if(m_armHeight == "home"){
-            m_armSubsystem.moveHome();
+            m_armSubsystem.moveHome(m_controllerOverride);
         }
     }
 
