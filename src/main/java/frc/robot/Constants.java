@@ -40,7 +40,7 @@ public final class Constants {
 
         public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.35;
+        public static final double armBaseClosedMaxOutput = 0.4;
         public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
@@ -114,9 +114,9 @@ public final class Constants {
         public static final double elevatorMidPos = 0;
         public static final double elevatorDownPos = 0;
 
-        public static final double shoulderUpPos = 300;
-        public static final double shoulderMidPos = 200;
-        public static final double shoulderDownPos = 100;
+        public static final double shoulderUpPos = 450;
+        public static final double shoulderMidPos = 300;
+        public static final double shoulderDownPos = 200;
         public static final double shoulderHomePos = 0;
 
         public static final double wristUpPos = 40000;
