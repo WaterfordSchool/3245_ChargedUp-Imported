@@ -27,11 +27,11 @@ public class ClawV2Subsystem extends SubsystemBase{
     
     public void manualSpin(XboxController controller){
         //claw in
-        if(controller.getRawButton(Constants.manualClawInButton)){
+        if(controller.getRawAxis(3)>0){
             clawv2claw.set(-0.25);
        }
         //claw out
-        if(controller.getRawButton(Constants.manualClawSpitButton)){
+        if(controller.getRawAxis(2)>0){
             clawv2claw.set(0.25);
         }
         //flange in
@@ -43,7 +43,7 @@ public class ClawV2Subsystem extends SubsystemBase{
             clawv2flange.set(0.25);
         }*/
         //inactive claw
-        if(!controller.getRawButton(Constants.manualClawInButton) && !controller.getRawButton(Constants.manualClawSpitButton)){
+        if(controller.getRawAxis(3)==0 && controller.getRawAxis(2)==0){
             clawv2claw.set(0);
         }
         //inactive flange
@@ -67,9 +67,12 @@ public class ClawV2Subsystem extends SubsystemBase{
         return limSwitchClaw.get();
     }
 
-    public void stopSpin(){
+    public void stop(){
         clawv2claw.set(0);
-        //clawv2flange.set(0);
+    }
+
+    public void spit(){
+        clawv2claw.set(.25);
     }
 
 }

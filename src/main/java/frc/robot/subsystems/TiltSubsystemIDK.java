@@ -36,6 +36,7 @@ public class TiltSubsystemIDK extends SubsystemBase{
     public void periodic() {
         SmartDashboard.putNumber("Tilt Encoder Absolute Position", tiltEnc.getIntegratedSensorAbsolutePosition());
         SmartDashboard.putNumber("Tilt Encoder Position", tiltEnc.getIntegratedSensorPosition());
+       // tilt.set(ControlMode.PercentOutput, 0.03);
     }
     
     public void resetEncoder(){
@@ -46,14 +47,18 @@ public class TiltSubsystemIDK extends SubsystemBase{
 
     public void tiltUp(){
         //set to up encoder position
+        tilt.set(ControlMode.Position, Constants.wristUpPos);
     }
 
     public void tiltDown(){
         //set to down encoder position
+        tilt.set(ControlMode.Position, Constants.wristDownPos);
+
     }
 
     public void tiltHome(){
         //set to home encoder position
+        tilt.set(ControlMode.Position, Constants.wristHomePos);
     }
 
     public void moveManual(XboxController controller){

@@ -15,6 +15,8 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ManualClawV2RunCommand;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
+import frc.robot.commands.SetSpitClawV2Command;
+import frc.robot.commands.SetTiltCommand;
 import frc.robot.commands.Spinjitsu;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.ClawV2Subsystem;
@@ -39,9 +41,15 @@ public class RobotContainer {
   private final TiltSubsystemIDK m_wristSubsystem = new TiltSubsystemIDK();
   //commands
   //auto command
-  private final AutoCommandBalance m_autonomousBalanceCommand = new AutoCommandBalance(m_driveTrain);
+  private final Command m_autoScore = new SequentialCommandGroup(new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"));
+  private final Command m_driveOutNoBalance = new AutoDrive(m_driveTrain, 5, -0.4, 0);
+  private final Command m_driveBalance = new AutoDrive(m_driveTrain, 5, -0.4, 0);
+
+  private final Command m_autoBalance = new SequentialCommandGroup(m_autoScore, m_driveBalance);
+  private final Command m_autoNoBalance = new SequentialCommandGroup(m_autoScore, m_driveOutNoBalance);
+
   //private final AutoNoBalanceGroup m_autoGroup = new SequentialCommandGroup(new SetArmCommand(m_armSubsystem, null), new AutoDrive(2, .3, 0),);
-  private final AutoCommandNoBalance m_autonomousNoBalanceCommand = new AutoCommandNoBalance(m_driveTrain); 
+  private final AutoCommandNoBalance m_autonomousNoBalanceCommand = new AutoCommandNoBalance(m_driveTrain);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.8, driver);
@@ -60,13 +68,13 @@ public class RobotContainer {
   public RobotContainer() {
     //default commands
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
-    m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
+    //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     m_clawV2Subsystem.setDefaultCommand(new ManualClawV2RunCommand(m_clawV2Subsystem, operator));
     m_wristSubsystem.setDefaultCommand(new ManualTiltCommand(m_wristSubsystem, operator));
     
     //choosable auto
-    m_chooser.setDefaultOption("no balance", m_autonomousNoBalanceCommand);
-    m_chooser.addOption("balance", m_autonomousBalanceCommand);
+    m_chooser.setDefaultOption("no balance", m_autoNoBalance);
+    m_chooser.addOption("balance", m_autoBalance);
     SmartDashboard.putData("autos", m_chooser);
     configureButtonBindings();
   }
