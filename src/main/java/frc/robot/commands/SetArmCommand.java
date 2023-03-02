@@ -36,6 +36,10 @@ public class SetArmCommand extends CommandBase{
         if(m_armHeight == "home"){
             m_armSubsystem.moveHome(m_controllerOverride);
         }
+
+        if(m_armHeight == "reset"){
+            m_armSubsystem.resetEncoders();
+        }
     }
 
     @Override

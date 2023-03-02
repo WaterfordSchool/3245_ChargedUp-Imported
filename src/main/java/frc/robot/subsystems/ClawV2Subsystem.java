@@ -28,11 +28,11 @@ public class ClawV2Subsystem extends SubsystemBase{
     public void manualSpin(XboxController controller){
         //claw in
         if(controller.getRawAxis(3)>0){
-            clawv2claw.set(-0.25);
+            clawv2claw.set(-0.35);
        }
         //claw out
         if(controller.getRawAxis(2)>0){
-            clawv2claw.set(0.25);
+            clawv2claw.set(0.35);
         }
         //flange in
         /*if(controller.getRawButton(Constants.manualFlangeInButton)){
@@ -72,7 +72,7 @@ public class ClawV2Subsystem extends SubsystemBase{
     }
 
     public void spit(){
-        clawv2claw.set(.25);
+        clawv2claw.set(.35);
     }
 
 }

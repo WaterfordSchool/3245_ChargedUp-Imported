@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -18,6 +19,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    CameraServer.startAutomaticCapture();
+    CameraServer.putVideo("blur", 420, 690);
     //getInstance() deprecated but it's ok for now
     /*CameraServer.putVideo("blur", 420, 690);   
 

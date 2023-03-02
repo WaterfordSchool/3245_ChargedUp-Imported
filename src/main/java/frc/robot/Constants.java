@@ -38,15 +38,15 @@ public final class Constants {
         public static final double clawContactCurrentValue = 0;
         public static final double clawNoContactSpeed = 0.1;
 
-        public static final double armBaseClosedRampRate = 0.8;
+       // public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.4;
+        public static final double armBaseClosedMaxOutput = 0.25;
         public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
         public static final double clawDriveClosedMaxOutput = 0.15;
 
-        public static final double tiltClosedRampRate = 0.4;
+        public static final double tiltClosedRampRate = 0.7;
         public static final double tiltMaxOutput = 0.2;
         //PID
         public static final double elevatorkF = 0.0;
@@ -114,15 +114,18 @@ public final class Constants {
         public static final double elevatorMidPos = 0;
         public static final double elevatorDownPos = 0;
 
-        public static final double shoulderUpPos = 450;
+        public static final double shoulderUpPos = 400;
         public static final double shoulderMidPos = 300;
         public static final double shoulderDownPos = 200;
         public static final double shoulderHomePos = 0;
 
-        public static final double wristUpPos = 40000;
-        public static final double wristMidPos = 40000;
-        public static final double wristDownPos = 30000;
-        public static final double wristHomePos = 450;
+        public static final double wristUpPos = 66000;
+        public static final double wristMidPos = 49000;
+        public static final double wristDownPos = 40000;
+        public static final double wristHomePos = 0;
+
+        //37000, 26000, 10000
+
 //low: 11, 38000
 //mid: 300, 62000
 //high: 430, 74000
