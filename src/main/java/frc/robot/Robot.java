@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture();
     CameraServer.putVideo("blur", 420, 690);
+    CameraServer.putVideo("blur2", 420, 690);
     //getInstance() deprecated but it's ok for now
     /*CameraServer.putVideo("blur", 420, 690);   
 

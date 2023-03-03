@@ -8,12 +8,10 @@ public class SetArmCommand extends CommandBase{
 
     private final ArmSubystem m_armSubsystem;
     private final String m_armHeight;
-    private final XboxController m_controllerOverride;
     
-    public SetArmCommand(ArmSubystem armSubystem, String armHeight, XboxController controllerOverride){
+    public SetArmCommand(ArmSubystem armSubystem, String armHeight){
         m_armSubsystem = armSubystem;
         m_armHeight = armHeight;
-        m_controllerOverride = controllerOverride;
         addRequirements(m_armSubsystem);
     }
 
@@ -24,17 +22,17 @@ public class SetArmCommand extends CommandBase{
     @Override
     public void execute() {
         if(m_armHeight == "high"){
-            m_armSubsystem.moveHigh(m_controllerOverride);
+            m_armSubsystem.moveHigh();
         }
         if(m_armHeight == "mid"){
-            m_armSubsystem.moveMid(m_controllerOverride);
+            m_armSubsystem.moveMid();
         }
         if(m_armHeight == "low"){
-            m_armSubsystem.moveLow(m_controllerOverride);
+            m_armSubsystem.moveLow();
         }
 
         if(m_armHeight == "home"){
-            m_armSubsystem.moveHome(m_controllerOverride);
+            m_armSubsystem.moveHome();
         }
 
         if(m_armHeight == "reset"){
