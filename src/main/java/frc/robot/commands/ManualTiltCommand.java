@@ -2,14 +2,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.TiltSubsystemIDK;
+import frc.robot.subsystems.WristSubsystem;
 
 public class ManualTiltCommand extends CommandBase{
 
-    private final TiltSubsystemIDK m_tiltubsystem;
+    private final WristSubsystem m_tiltubsystem;
     private XboxController m_controller;
+    private double m_posToStayAt;
     
-    public ManualTiltCommand(TiltSubsystemIDK tiltSubsystem, XboxController controller){
+    public ManualTiltCommand(WristSubsystem tiltSubsystem, XboxController controller){
         m_tiltubsystem = tiltSubsystem;
         m_controller = controller;
         addRequirements(m_tiltubsystem);
@@ -18,12 +19,12 @@ public class ManualTiltCommand extends CommandBase{
     @Override
     public void initialize() {
         //m_tiltubsystem.resetEncoder();
+        //m_posToStayAt = m_tiltubsystem.getCurrentPosition();
     }
         
     @Override
     public void execute() {
-        m_tiltubsystem.moveManual(m_controller);
-        
+            m_tiltubsystem.moveManual(m_controller);
     }
 
     @Override

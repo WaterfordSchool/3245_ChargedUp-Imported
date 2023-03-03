@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.TiltSubsystemIDK;
+import frc.robot.subsystems.WristSubsystem;
 
 public class SetTiltCommand extends CommandBase{
 
-    private final TiltSubsystemIDK m_tiltSubsystem;
+    private final WristSubsystem m_tiltSubsystem;
     private final String m_direction;
     
-    public SetTiltCommand(TiltSubsystemIDK tiltSubystem, String direction){
+    public SetTiltCommand(WristSubsystem tiltSubystem, String direction){
         m_tiltSubsystem = tiltSubystem;
         m_direction = direction;
         addRequirements(m_tiltSubsystem);
@@ -20,14 +20,17 @@ public class SetTiltCommand extends CommandBase{
         
     @Override
     public void execute() {
-        if(m_direction == "up"){
-            m_tiltSubsystem.tiltUp();
+        if(m_direction == "high"){
+            m_tiltSubsystem.wristUp();
         }
-        if(m_direction == "down"){
-            m_tiltSubsystem.tiltDown();;
+        if(m_direction == "mid"){
+            m_tiltSubsystem.wristMid();
+        }
+        if(m_direction == "low"){
+            m_tiltSubsystem.wristDown();;
         }
         if(m_direction == "home"){
-            m_tiltSubsystem.tiltHome();
+            m_tiltSubsystem.wristHome();
         }
     }
 
