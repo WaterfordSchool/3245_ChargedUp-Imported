@@ -66,7 +66,7 @@ public class ClawCloseSubsystem extends SubsystemBase{
 
     public void moveManual(XboxController controller){
         //move arm manually
-        clawCloseOpenMotor.set(Constants.clawCloseMaxVal*controller.getRawAxis(Constants.manualClawCloseAxis));
+        clawCloseOpenMotor.set(Constants.clawCloseMaxVal*controller.getRawAxis(3));
     }
 
     public void drop(){

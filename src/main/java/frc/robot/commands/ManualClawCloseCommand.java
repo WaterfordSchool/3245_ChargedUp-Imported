@@ -23,18 +23,8 @@ public class ManualClawCloseCommand extends CommandBase{
         
     @Override
     public void execute() {
-        if(m_controller.getRawButton(Constants.currentSlideButton)){
-           // m_lobterStretchSubsystem.currentOutputMode();
-        }
-        if(!m_controller.getRawButton(Constants.currentSlideButton)){
             m_lobterStretchSubsystem.moveManual(m_controller);
         }
-        SmartDashboard.putNumber("claw output current", m_lobterStretchSubsystem.getCurrentOutput());
-
-        //maybe combine encoder command with this class? avoid logic loops
-        //if the axis value = 0, then if this button is pressed set to this command (inception)
-    }
-
     @Override
     public void end(boolean interrupted){}
 

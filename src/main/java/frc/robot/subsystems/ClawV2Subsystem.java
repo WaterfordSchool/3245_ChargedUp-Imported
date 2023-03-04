@@ -44,7 +44,7 @@ public class ClawV2Subsystem extends SubsystemBase{
         }*/
         //inactive claw
         if(controller.getRawAxis(3)==0 && controller.getRawAxis(2)==0){
-            clawv2claw.set(-.07);
+            clawv2claw.set(-0.07);
         }
         //inactive flange
         /*if(!controller.getRawButton(Constants.manualFlangeInButton) && !controller.getRawButton(Constants.manualFlangeOutButton)){

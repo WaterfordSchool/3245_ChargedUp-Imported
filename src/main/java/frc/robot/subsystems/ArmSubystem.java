@@ -85,7 +85,7 @@ public class ArmSubystem extends SubsystemBase{
         //set arm to low encoder positions
        //armMotorWristJoint.set(ControlMode.Position, Constants.wristDownPos);
        encoderSetPoint = Constants.shoulderDownPos;
-       armMotorShoulderMaster.set(ControlMode.Position, -7000);
+       armMotorShoulderMaster.set(ControlMode.Position, -Constants.shoulderDownPos);
        //armMotorShoulderMaster.set(ControlMode.PercentOutput, encoderDistance);
        // armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderDownPos));
 
@@ -110,7 +110,7 @@ public class ArmSubystem extends SubsystemBase{
         //armMotorWristJoint.set(ControlMode.Position, Constants.wristMidPos);
 
         //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderMidPos));
-        armMotorShoulderMaster.set(ControlMode.Position, -58000);
+        armMotorShoulderMaster.set(ControlMode.Position, -Constants.shoulderMidPos);
 
         /*if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
             armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
@@ -133,7 +133,7 @@ public class ArmSubystem extends SubsystemBase{
         
         //armMotorShoulderMaster.set(ControlMode.PercentOutput, shoulderPID.calculate(armShoulderMasterEnc.getDistance(), Constants.shoulderUpPos));
         //trying something new
-        armMotorShoulderMaster.set(ControlMode.Position, -84000);
+        armMotorShoulderMaster.set(ControlMode.Position, -Constants.shoulderUpPos);
         /*if(controllerOverride.getRawAxis(Constants.manualShoulderAxis)!=0){
             armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controllerOverride.getRawAxis(Constants.manualShoulderAxis));
         }

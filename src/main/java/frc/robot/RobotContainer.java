@@ -4,15 +4,11 @@
 
 package frc.robot;
 
-import javax.sound.midi.Sequence;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
-import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ManualClawV2RunCommand;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
@@ -29,7 +25,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
 
@@ -45,12 +40,12 @@ public class RobotContainer {
   private final WristSubsystem m_wristSubsystem = new WristSubsystem();
   //commands
   //auto command
-  private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/ new AutoDrive(m_driveTrain, 3.6, -0.5, 0));
-  private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
+  private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.85, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
+  private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/ new SetTiltCommand(m_wristSubsystem, "down"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
 
 
   //drive commands
-  private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.8, driver);
+  private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
   private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, 0.3, 0.4, driver);
   private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, 0.8, 0.8, driver);
   private final Spinjitsu m_spinjitsu1 = new Spinjitsu(m_driveTrain, 1, driver);
@@ -73,7 +68,7 @@ public class RobotContainer {
   private final SequentialCommandGroup m_midSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "mid")).beforeStarting(new SetTiltCommand(m_wristSubsystem, "mid"));
   private final SequentialCommandGroup m_highSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "high")).beforeStarting(new SetTiltCommand(m_wristSubsystem, "high"));
   private final SequentialCommandGroup m_homeSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "home"));
-
+  private final SequentialCommandGroup m_fiddlingAround = new SequentialCommandGroup(new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "high"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "home"));
 
   public RobotContainer() {
     //default commands
@@ -97,24 +92,23 @@ public class RobotContainer {
     JoystickButton armLow = new JoystickButton(operator, Constants.armLowButton);
     JoystickButton armMid = new JoystickButton(operator, Constants.armMidButton);
     JoystickButton armHigh = new JoystickButton(operator, Constants.armHighButton);
+    JoystickButton wristStay = new JoystickButton(operator, Constants.wristStayButton);
 
     POVButton spinjitsuButton1 = new POVButton(driver, 90);
 
     fastButton.whileHeld(m_fastDrive);
     slowButton.whileHeld(m_slowDrive);
     spinjitsuButton1.whileHeld(m_spinjitsu1);
+  
+    //wristStay.whileHeld(new StayTiltCommand(m_wristSubsystem, operator));
 
     armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home"));
-    //armHome.whileHeld(new SetTiltCommand(m_wristSubsystem, "home"));
 
     armLow.whileHeld(new SetArmCommand(m_armSubsystem, "low"));
-    //armLow.whileHeld(new SetTiltCommand(m_wristSubsystem, "low"));
 
     armMid.whileHeld(new SetArmCommand(m_armSubsystem, "mid"));
-    //armMid.whileHeld(new SetTiltCommand(m_wristSubsystem, "mid"));
 
     armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high"));
-    //armHigh.whileHeld(new SetTiltCommand(m_wristSubsystem, "high"));
 
     //armHome.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "home")));
     //armLow.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "low")).andThen(new SetTiltCommand(m_wristSubsystem, "low")));

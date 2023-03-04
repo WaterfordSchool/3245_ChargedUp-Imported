@@ -39,7 +39,7 @@ public final class Constants {
         public static final double clawNoContactSpeed = 0.1;
         public static final double clawConstantSpeedVal = 0.05;
 
-       // public static final double armBaseClosedRampRate = 0.8;
+        //public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
         public static final double armBaseClosedMaxOutput = 0.25;
         public static final double armWristClosedMaxOutput = 0.2;
@@ -109,21 +109,21 @@ public final class Constants {
         public static final int armLowButton = 2; //b
         public static final int armMidButton = 3; //x
         public static final int armHighButton = 4; //y
-        public static final int wristStayButton = 20;
+        public static final int wristStayButton = 6;
 
         //encoder values
         public static final double elevatorUpPos = 0;
         public static final double elevatorMidPos = 0;
         public static final double elevatorDownPos = 0;
 
-        public static final double shoulderUpPos = 440;
-        public static final double shoulderMidPos = 325;
-        public static final double shoulderDownPos = 200;
+        public static final double shoulderUpPos = 56000;
+        public static final double shoulderMidPos = 38000;
+        public static final double shoulderDownPos = 7000;
         public static final double shoulderHomePos = 0;
 
         public static final double wristUpPos = 66000;
         public static final double wristMidPos = 49000;
-        public static final double wristDownPos = 40000;
+        public static final double wristDownPos = 30000;
         public static final double wristHomePos = 0;
 
         //37000, 26000, 10000
