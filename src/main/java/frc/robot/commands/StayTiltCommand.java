@@ -19,6 +19,7 @@ public class StayTiltCommand extends CommandBase{
     @Override
     public void initialize() {
         m_posToStayAt = m_tiltSubsystem.getCurrentPosition();
+        //get position when scheduler calls command
     }
         
     @Override
@@ -31,7 +32,7 @@ public class StayTiltCommand extends CommandBase{
 
     @Override
     public boolean isFinished(){
+        //return finished for engaged right joystick
         return m_tiltSubsystem.isAxisEngaged(m_controller);
     }
-
 }

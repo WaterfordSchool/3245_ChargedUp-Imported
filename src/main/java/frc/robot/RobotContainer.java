@@ -40,8 +40,8 @@ public class RobotContainer {
   private final WristSubsystem m_wristSubsystem = new WristSubsystem();
   //commands
   //auto command
-  private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.85, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
-  private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/ new SetTiltCommand(m_wristSubsystem, "down"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
+  private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
+  private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
 
 
   //drive commands
@@ -49,14 +49,6 @@ public class RobotContainer {
   private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, 0.3, 0.4, driver);
   private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, 0.8, 0.8, driver);
   private final Spinjitsu m_spinjitsu1 = new Spinjitsu(m_driveTrain, 1, driver);
-
-  //arm commands
-
-  //elevator commands
-
-  //claw commands
-
-  //tilt commands
 
   //command groups
   private final SequentialCommandGroup m_lowCommandGroup =  new SequentialCommandGroup(new SetTiltCommand(m_wristSubsystem, "home"), new SetArmCommand(m_armSubsystem, "low"), new WaitCommand(.5), new SetTiltCommand(m_wristSubsystem, "low"));
@@ -131,9 +123,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    //TODO: make auto work
     return m_chooser.getSelected();
-    //return null;
   }
 }
