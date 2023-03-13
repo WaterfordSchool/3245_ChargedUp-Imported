@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
+import frc.robot.commands.BalanceAutoCommand;
 import frc.robot.commands.ManualClawV2RunCommand;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
@@ -42,7 +43,7 @@ public class RobotContainer {
   //auto command
   private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
   private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
-
+  private final Command m_autoBalanceMoreComplicated = new BalanceAutoCommand(m_driveTrain);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
@@ -72,6 +73,7 @@ public class RobotContainer {
     //choosable auto
     m_chooser.setDefaultOption("no balance", m_autoNoBalance);
     m_chooser.addOption("balance", m_autoBalance);
+    m_chooser.addOption("balance gyro", m_autoBalanceMoreComplicated);
     SmartDashboard.putData("autos", m_chooser);
     configureButtonBindings();
   }
