@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -20,6 +21,8 @@ public class DriveTrain extends SubsystemBase {
     private MotorControllerGroup rightDrive; 
 
     private DifferentialDrive dT; 
+
+    private AHRS navx;
     
   /** Creates a new ExampleSubsystem. */
   public DriveTrain() {
@@ -34,6 +37,8 @@ public class DriveTrain extends SubsystemBase {
     rightDrive = new MotorControllerGroup(right1, right2);
 
     dT = new DifferentialDrive(leftDrive, rightDrive);
+
+    navx = new AHRS();
     
      //ramping
      final double t = 0.5;
@@ -83,5 +88,32 @@ public class DriveTrain extends SubsystemBase {
 
   public void stop(){
     dT.arcadeDrive(0, 0);
+  }
+  
+
+  public double getPitch(){
+    return navx.getPitch();
+  }
+
+  public void resetStuff(){
+    navx.calibrate();
+    navx.reset();
+  }
+
+  public void balance(double pitch, int count){
+    if(pitch<Constants.angleThresh1 && count == 0){
+      dT.arcadeDrive(0, Constants.autoSpeed1);
+    }
+    if(pitch>Constants.angleThresh1 && pitch<Constants.angleThresh2 && count<2){
+      count = 1;
+      dT.arcadeDrive(0, Constants.autoSpeed2);
+    }
+    if(pitch>Constants.angleThresh2){
+      dT.arcadeDrive(0, Constants.autoSpeed3);
+      count = 2;
+    }
+    if(pitch<Constants.angleThreshStop && count !=0){
+      dT.arcadeDrive(0, 0);
+    }
   }
 }

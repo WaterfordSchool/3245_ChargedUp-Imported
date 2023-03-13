@@ -41,7 +41,7 @@ public final class Constants {
 
         //public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.25;
+        public static final double armBaseClosedMaxOutput = 0.3;
         public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
@@ -125,6 +125,17 @@ public final class Constants {
         public static final double wristMidPos = 49000;
         public static final double wristDownPos = 30000;
         public static final double wristHomePos = 0;
+
+        //auto stuff
+        public static final double angleThresh1 = 10;
+        public static final double angleThresh2 = 10;
+        public static final double angleThresh3 = 10;
+        public static final double angleThreshStop = 3;
+        public static final double autoSpeed1 = 0.4;
+        public static final double autoSpeed2 = 0.2;
+        public static final double autoSpeed3 = 0.1;
+
+
 
         //37000, 26000, 10000
 
