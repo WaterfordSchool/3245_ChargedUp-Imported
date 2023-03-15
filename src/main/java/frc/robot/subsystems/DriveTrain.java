@@ -99,7 +99,7 @@ public class DriveTrain extends SubsystemBase {
     navx.calibrate();
     navx.reset();
   }
-
+//TODO: gyro drive straight
   public void balance(double pitch, int count){
     if(pitch<Constants.angleThresh1 && count == 0){
       dT.arcadeDrive(0, Constants.autoSpeed1);
