@@ -10,15 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.BalanceAutoCommand;
-import frc.robot.commands.ManualClawV2RunCommand;
+import frc.robot.commands.ManualClawV3RunCommand;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
-import frc.robot.commands.SetSpitClawV2Command;
 import frc.robot.commands.SetTiltCommand;
 import frc.robot.commands.Spinjitsu;
-import frc.robot.commands.StayTiltCommand;
 import frc.robot.subsystems.ArmSubystem;
-import frc.robot.subsystems.ClawV2Subsystem;
+import frc.robot.subsystems.ClawV3Subsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -36,7 +34,7 @@ public class RobotContainer {
 
   //subsystems
   private final DriveTrain m_driveTrain = new DriveTrain();
-  private final ClawV2Subsystem m_clawV2Subsystem = new ClawV2Subsystem();
+  private final ClawV3Subsystem m_clawV3Subsystem = new ClawV3Subsystem();
   private final ArmSubystem m_armSubsystem = new ArmSubystem();
   private final WristSubsystem m_wristSubsystem = new WristSubsystem();
   //commands
@@ -67,7 +65,7 @@ public class RobotContainer {
     //default commands
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
     //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
-    m_clawV2Subsystem.setDefaultCommand(new ManualClawV2RunCommand(m_clawV2Subsystem, operator));
+    m_clawV3Subsystem.setDefaultCommand(new ManualClawV3RunCommand(m_clawV3Subsystem, operator));
     m_wristSubsystem.setDefaultCommand(new ManualTiltCommand(m_wristSubsystem, operator));
     
     //choosable auto
