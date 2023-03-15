@@ -12,7 +12,7 @@ public final class Constants {
         public static final int driveright2ID = 4;
     //motor ids
         public static final int armMotorShoulderMasterID = 5;
-        //public static final int armMotorShoulderSlaveID = 13;
+        public static final int armMotorShoulderSlaveID = 13;
         public static final int armMotorWristJointID = 6;
 
         public static final int elevatorMotorMasterID = 7;
