@@ -11,6 +11,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.BalanceAutoCommand;
 import frc.robot.commands.ManualClawV3RunCommand;
+import frc.robot.commands.ManualLed;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
 import frc.robot.commands.SetTiltCommand;
@@ -18,6 +19,7 @@ import frc.robot.commands.Spinjitsu;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.ClawV3Subsystem;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.LEDSSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -37,6 +39,7 @@ public class RobotContainer {
   private final ClawV3Subsystem m_clawV3Subsystem = new ClawV3Subsystem();
   private final ArmSubystem m_armSubsystem = new ArmSubystem();
   private final WristSubsystem m_wristSubsystem = new WristSubsystem();
+  private final LEDSSubsystem m_ledsSubsystem = new LEDSSubsystem();
   //commands
   //auto command
   private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
@@ -67,6 +70,7 @@ public class RobotContainer {
     //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     m_clawV3Subsystem.setDefaultCommand(new ManualClawV3RunCommand(m_clawV3Subsystem, operator));
     m_wristSubsystem.setDefaultCommand(new ManualTiltCommand(m_wristSubsystem, operator));
+    m_ledsSubsystem.setDefaultCommand(new ManualLed(m_ledsSubsystem, operator));
     
     //choosable auto
     m_chooser.setDefaultOption("no balance", m_autoNoBalance);
