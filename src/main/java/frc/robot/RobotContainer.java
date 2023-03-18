@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.BalanceAutoCommand;
+import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ManualClawV3RunCommand;
 import frc.robot.commands.ManualLed;
 import frc.robot.commands.ManualTiltCommand;
@@ -48,7 +49,7 @@ public class RobotContainer {
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
-  private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, 0.3, 0.4, driver);
+  private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, 0.4, 0.4, driver);
   private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, 0.8, 0.8, driver);
   private final Spinjitsu m_spinjitsu1 = new Spinjitsu(m_driveTrain, 1, driver);
 
@@ -80,7 +81,6 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-
   private void configureButtonBindings() {
     JoystickButton fastButton = new JoystickButton(driver, Constants.fastButton);
     JoystickButton slowButton = new JoystickButton(driver, Constants.slowButton);
@@ -96,7 +96,6 @@ public class RobotContainer {
     slowButton.whileHeld(m_slowDrive);
     spinjitsuButton1.whileHeld(m_spinjitsu1);
   
-    //wristStay.whileHeld(new StayTiltCommand(m_wristSubsystem, operator));
 
     armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home"));
 
@@ -106,10 +105,13 @@ public class RobotContainer {
 
     armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high"));
 
-    //armHome.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "home")));
-    //armLow.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "low")).andThen(new SetTiltCommand(m_wristSubsystem, "low")));
-    //armMid.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "mid")).andThen(new SetTiltCommand(m_wristSubsystem, "mid")));
-    //armHigh.onTrue(new SetTiltCommand(m_wristSubsystem, "home").andThen(new SetArmCommand(m_armSubsystem, "high")).andThen(new SetTiltCommand(m_wristSubsystem, "high")));
+    /*armHome.whileHeld(new SetTiltCommand(m_wristSubsystem, "home"));
+    
+    armLow.whileHeld(new SetTiltCommand(m_wristSubsystem, "low"));
+
+    armMid.whileHeld(new SetTiltCommand(m_wristSubsystem, "mid"));
+
+    armHigh.whileHeld(new SetTiltCommand(m_wristSubsystem, "high"));*/
     
 
     //TODO: switch to wrist manual default control

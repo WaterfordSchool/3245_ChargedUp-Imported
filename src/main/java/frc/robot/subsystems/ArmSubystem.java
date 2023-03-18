@@ -35,19 +35,22 @@ public class ArmSubystem extends SubsystemBase{
 
         //pid
         armMotorShoulderMaster.config_kF(0, 0);
-        armMotorShoulderMaster.config_kP(0, 0.15);
+        armMotorShoulderMaster.config_kP(0, 0.1);
         armMotorShoulderMaster.config_kI(0, 0);
-        armMotorShoulderMaster.config_kD(0, 0);
+        armMotorShoulderMaster.config_kD(0, 0.2);
 
         //config max output
         armMotorShoulderMaster.configClosedLoopPeakOutput(0, Constants.armBaseClosedMaxOutput);
         armMotorShoulderMaster.configPeakOutputForward(0.25);
         armMotorShoulderMaster.configPeakOutputReverse(-0.25);
+        armMotorShoulderSlave.configClosedLoopPeakOutput(0, Constants.armBaseClosedMaxOutput);
+        armMotorShoulderSlave.configPeakOutputForward(0.25);
+        armMotorShoulderSlave.configPeakOutputReverse(-0.25);
         //armMotorShoulderMaster.configOpenloopRamp(0.7);
         //armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
 
-        armMotorShoulderMaster.setInverted(true);
-        armMotorShoulderSlave.setInverted(true);
+        //armMotorShoulderMaster.setInverted(true);
+        //armMotorShoulderSlave.setInverted(true);
         armMotorShoulderSlave.follow(armMotorShoulderMaster);
     }
 
@@ -84,9 +87,9 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster.set(ControlMode.Position, 0);
     }
 
-
     public void moveManual(XboxController controller){
         //move arm manually
-        //armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
+        armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
+        armMotorShoulderSlave.follow(armMotorShoulderMaster);
     }
 }

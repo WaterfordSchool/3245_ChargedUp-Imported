@@ -33,6 +33,6 @@ public class StayTiltCommand extends CommandBase{
     @Override
     public boolean isFinished(){
         //return finished for engaged right joystick
-        return m_tiltSubsystem.isAxisEngaged(m_controller);
+        return true;
     }
 }

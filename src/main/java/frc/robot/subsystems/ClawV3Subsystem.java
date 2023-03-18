@@ -23,30 +23,17 @@ public class ClawV3Subsystem extends SubsystemBase{
     public void manualSpin(XboxController controller){
         //claw in
         if(controller.getRawAxis(3)>0){
-            clawv3claw.set(-0.3);
+            clawv3claw.set(-0.4);
        }
         //claw out
         if(controller.getRawAxis(2)>0){
-            clawv3claw.set(0.3);
+            clawv3claw.set(0.45);
         }
-        //flange in
-        /*if(controller.getRawButton(Constants.manualFlangeInButton)){
-            clawv2flange.set(-0.25);
-       }
-        //flange out
-        if(controller.getRawButton(Constants.manualFlangeOutButton)){
-            clawv2flange.set(0.25);
-        }*/
+        
         //inactive claw
         if(controller.getRawAxis(3)==0 && controller.getRawAxis(2)==0){
-            clawv3claw.set(-0.07);
+            clawv3claw.set(-0.04);
         }
-        //inactive flange
-        /*if(!controller.getRawButton(Constants.manualFlangeInButton) && !controller.getRawButton(Constants.manualFlangeOutButton)){
-            clawv2flange.set(0);
-        }*/
-
-        //clawv2claw.set(0.6*controller.getRawAxis(Constants.manualClawCloseAxis));
 
     }
 

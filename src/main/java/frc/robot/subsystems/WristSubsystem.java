@@ -84,7 +84,6 @@ public class WristSubsystem extends SubsystemBase{
         //boolean axisengaged controller.getrawaxis == 0;
         //false = 1
         //false * 0.1
-            wrist.set(ControlMode.PercentOutput, Constants.tiltMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
-        
+            wrist.set(ControlMode.PercentOutput, -Constants.tiltMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
     }
 }

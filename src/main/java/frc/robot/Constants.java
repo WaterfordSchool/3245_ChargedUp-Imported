@@ -11,12 +11,12 @@ public final class Constants {
         public static final int driveright1ID = 3;
         public static final int driveright2ID = 4;
     //motor ids
-        public static final int armMotorShoulderMasterID = 5;
-        public static final int armMotorShoulderSlaveID = 13;
+        public static final int armMotorShoulderMasterID = 7;
+        public static final int armMotorShoulderSlaveID = 8;
         public static final int armMotorWristJointID = 6;
 
-        public static final int elevatorMotorMasterID = 7;
-        public static final int elevatorMotorSlaveID = 8;
+        public static final int elevatorMotorMasterID = 41;
+        public static final int elevatorMotorSlaveID = 40;
 
         public static final int clawRunLeftMotorID = 9;
         public static final int clawRunRightMotorID = 10;
@@ -41,14 +41,14 @@ public final class Constants {
 
         //public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.3;
+        public static final double armBaseClosedMaxOutput = 0.25;
         public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
         public static final double clawDriveClosedMaxOutput = 0.15;
 
         public static final double tiltClosedRampRate = 0.7;
-        public static final double tiltMaxOutput = 0.2;
+        public static final double tiltMaxOutput = 0.45;
         //PID
         public static final double elevatorkF = 0.0;
         public static final double elevatorkP = 0.15;
@@ -58,7 +58,7 @@ public final class Constants {
         public static final double armBasekF = 0;
         public static final double armBasekP = 0;
         public static final double armBasekI = 0;
-        public static final double armBasekD = 0.4;
+        public static final double armBasekD = 0.5;
 
         public static final double armWristkF = 0.0;
         public static final double armWristkP = 0.15;
@@ -116,14 +116,14 @@ public final class Constants {
         public static final double elevatorMidPos = 0;
         public static final double elevatorDownPos = 0;
 
-        public static final double shoulderUpPos = 56000;
-        public static final double shoulderMidPos = 38000;
-        public static final double shoulderDownPos = 7000;
+        public static final double shoulderUpPos = 89000;
+        public static final double shoulderMidPos = 75000;
+        public static final double shoulderDownPos = 20000;
         public static final double shoulderHomePos = 0;
 
-        public static final double wristUpPos = 66000;
-        public static final double wristMidPos = 49000;
-        public static final double wristDownPos = 30000;
+        public static final double wristUpPos = -66000;
+        public static final double wristMidPos = -49000;
+        public static final double wristDownPos = -35000;
         public static final double wristHomePos = 0;
 
         //auto stuff
