@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.BalanceAutoCommand;
-import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ManualClawV3RunCommand;
 import frc.robot.commands.ManualLed;
 import frc.robot.commands.ManualTiltCommand;
