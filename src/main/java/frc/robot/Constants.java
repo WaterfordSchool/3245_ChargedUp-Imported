@@ -37,18 +37,18 @@ public final class Constants {
         public static final double clawCloseMaxVal = 0.3;
         public static final double clawContactCurrentValue = 0;
         public static final double clawNoContactSpeed = 0.1;
-        public static final double clawConstantSpeedVal = 0.05;
+        public static final double clawConstantSpeedVal = -0.02;
 
         //public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
-        public static final double armBaseClosedMaxOutput = 0.25;
+        public static final double armBaseClosedMaxOutput = 0.3;
         public static final double armWristClosedMaxOutput = 0.2;
 
         public static final double clawDriveClosedrampRate = 0.4;
         public static final double clawDriveClosedMaxOutput = 0.15;
 
         public static final double tiltClosedRampRate = 0.7;
-        public static final double tiltMaxOutput = 0.45;
+        public static final double tiltMaxOutput = 0.60;
         //PID
         public static final double elevatorkF = 0.0;
         public static final double elevatorkP = 0.15;

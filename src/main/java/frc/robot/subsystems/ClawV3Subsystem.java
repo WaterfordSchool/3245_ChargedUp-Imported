@@ -32,7 +32,7 @@ public class ClawV3Subsystem extends SubsystemBase{
         
         //inactive claw
         if(controller.getRawAxis(3)==0 && controller.getRawAxis(2)==0){
-            clawv3claw.set(-0.04);
+            clawv3claw.set(Constants.clawConstantSpeedVal);
         }
 
     }
