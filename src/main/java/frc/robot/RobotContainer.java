@@ -44,7 +44,7 @@ public class RobotContainer {
   //auto command
   private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
   private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
-  private final Command m_autoBalanceMoreComplicated = new BalanceAutoCommand(m_driveTrain);
+  private final Command m_autoBalanceMoreComplicated = new BalanceAutoCommand(m_driveTrain, 0);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
@@ -77,6 +77,7 @@ public class RobotContainer {
     m_chooser.addOption("balance", m_autoBalance);
     m_chooser.addOption("balance gyro", m_autoBalanceMoreComplicated);
     SmartDashboard.putData("autos", m_chooser);
+    SmartDashboard.putString("message to tony", "tony im in your walls :P");
     configureButtonBindings();
   }
 

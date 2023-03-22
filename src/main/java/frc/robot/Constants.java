@@ -128,10 +128,10 @@ public final class Constants {
 
         //auto stuff
         public static final double angleThresh1 = 10;
-        public static final double angleThresh2 = 10;
-        public static final double angleThresh3 = 10;
-        public static final double angleThreshStop = 3;
-        public static final double autoSpeed1 = 0.4;
+        public static final double angleThresh2 = 12;
+        public static final double angleThresh3 = 14;
+        public static final double angleThreshStop = 1;
+        public static final double autoSpeed1 = 0.55;
         public static final double autoSpeed2 = 0.2;
         public static final double autoSpeed3 = 0.1;
 
