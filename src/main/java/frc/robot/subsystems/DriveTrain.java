@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -52,6 +53,7 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("pitch", -navx.getPitch());
   }
 
   public void drive(XboxController driveController, double kSpeed, double kTurnSpeed) {
@@ -101,18 +103,16 @@ public class DriveTrain extends SubsystemBase {
   }
 //TODO: gyro drive straight
   public void balance(double pitch, int count){
+    SmartDashboard.putNumber("count", count);
     if(pitch<Constants.angleThresh1 && count == 0){
-      dT.arcadeDrive(0, Constants.autoSpeed1);
+      dT.arcadeDrive(0, -Constants.autoSpeed1);
     }
-    if(pitch>Constants.angleThresh1 && pitch<Constants.angleThresh2 && count<2){
+    if(pitch>Constants.angleThresh1 && count !=2){
       count = 1;
-      dT.arcadeDrive(0, Constants.autoSpeed2);
+      dT.arcadeDrive(0, -Constants.autoSpeed2);
     }
-    if(pitch>Constants.angleThresh2){
-      dT.arcadeDrive(0, Constants.autoSpeed3);
+    if(pitch<Constants.angleThreshStop && count > 0 ){
       count = 2;
-    }
-    if(pitch<Constants.angleThreshStop && count !=0){
       dT.arcadeDrive(0, 0);
     }
   }
