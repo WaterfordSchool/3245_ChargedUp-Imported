@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -53,7 +54,9 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("pitch", -navx.getPitch());
+    SmartDashboard.putNumber("pitch", -navx.getPitch() + 1);
+    SmartDashboard.putNumber("yaw", navx.getYaw());
+
   }
 
   public void drive(XboxController driveController, double kSpeed, double kTurnSpeed) {
@@ -94,7 +97,10 @@ public class DriveTrain extends SubsystemBase {
   
 
   public double getPitch(){
-    return navx.getPitch();
+    return -navx.getPitch() + 1;
+  }
+  public double getYaw(){
+    return navx.getYaw();
   }
 
   public void resetStuff(){
@@ -116,4 +122,9 @@ public class DriveTrain extends SubsystemBase {
       dT.arcadeDrive(0, 0);
     }
   }
+
+  public void closedArcadeDrive(double forwardSpeed, double turnSpeed){
+    dT.arcadeDrive(turnSpeed, forwardSpeed);
+  }
+
 }

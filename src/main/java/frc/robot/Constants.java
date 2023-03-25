@@ -37,7 +37,7 @@ public final class Constants {
         public static final double clawCloseMaxVal = 0.3;
         public static final double clawContactCurrentValue = 0;
         public static final double clawNoContactSpeed = 0.1;
-        public static final double clawConstantSpeedVal = -0.02;
+        public static final double clawConstantSpeedVal = -0.07;
 
         //public static final double armBaseClosedRampRate = 0.8;
         public static final double armWristClosedRampRate = 0.4;
