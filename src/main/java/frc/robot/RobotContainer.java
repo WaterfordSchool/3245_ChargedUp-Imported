@@ -8,14 +8,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.AutoDrive;
-import frc.robot.commands.BalanceAutoCommand;
 import frc.robot.commands.ManualClawV3RunCommand;
 import frc.robot.commands.ManualLed;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
 import frc.robot.commands.SetTiltCommand;
 import frc.robot.commands.Spinjitsu;
+import frc.robot.commands.auto.AutoBalanceCommandGroup;
+import frc.robot.commands.auto.AutoDrive;
+import frc.robot.commands.auto.AutoScoreHighLeave;
+import frc.robot.commands.auto.BalanceAutoCommand;
+import frc.robot.commands.auto.BalancePIDCommand;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.ClawV3Subsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -44,7 +47,8 @@ public class RobotContainer {
   //auto command
   private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
   private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
-  private final Command m_autoBalanceMoreComplicated = new BalanceAutoCommand(m_driveTrain, 0);
+  private final BalancePIDCommand m_pidBalanceNoDrive = new BalancePIDCommand(m_driveTrain);
+  private final AutoScoreHighLeave m_autoScoreHighLeave = new AutoScoreHighLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
@@ -64,6 +68,7 @@ public class RobotContainer {
   private final SequentialCommandGroup m_homeSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "home"));
   private final SequentialCommandGroup m_fiddlingAround = new SequentialCommandGroup(new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "high"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "home"));
 
+  private final AutoBalanceCommandGroup m_pidbalance = new AutoBalanceCommandGroup(m_driveTrain);
   public RobotContainer() {
     //default commands
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
@@ -73,10 +78,13 @@ public class RobotContainer {
     m_ledsSubsystem.setDefaultCommand(new ManualLed(m_ledsSubsystem, operator));
     
     //choosable auto
-    m_chooser.setDefaultOption("no balance", m_autoNoBalance);
-    m_chooser.addOption("balance", m_autoBalance);
-    m_chooser.addOption("balance gyro", m_autoBalanceMoreComplicated);
+    m_chooser.setDefaultOption("leave, no balance", m_autoNoBalance);
+    m_chooser.addOption("drive forward, balance gyro", m_pidbalance);
+    m_chooser.addOption("score high and leave, no balance", m_autoScoreHighLeave);
+    m_chooser.addOption("balance gyro no drive [TESTING ONLY]", m_pidBalanceNoDrive);
+
     SmartDashboard.putData("autos", m_chooser);
+
     SmartDashboard.putString("message to tony", "tony im in your walls :P");
     configureButtonBindings();
   }
