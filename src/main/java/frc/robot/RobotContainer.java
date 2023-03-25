@@ -12,12 +12,11 @@ import frc.robot.commands.ManualClawV3RunCommand;
 import frc.robot.commands.ManualLed;
 import frc.robot.commands.ManualTiltCommand;
 import frc.robot.commands.SetArmCommand;
-import frc.robot.commands.SetTiltCommand;
 import frc.robot.commands.Spinjitsu;
 import frc.robot.commands.auto.AutoBalanceCommandGroup;
 import frc.robot.commands.auto.AutoDrive;
 import frc.robot.commands.auto.AutoScoreHighLeave;
-import frc.robot.commands.auto.BalanceAutoCommand;
+import frc.robot.commands.auto.AutoScoreLowLeave;
 import frc.robot.commands.auto.BalancePIDCommand;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.ClawV3Subsystem;
@@ -26,7 +25,6 @@ import frc.robot.subsystems.LEDSSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -45,10 +43,10 @@ public class RobotContainer {
   private final LEDSSubsystem m_ledsSubsystem = new LEDSSubsystem();
   //commands
   //auto command
-  private final Command m_autoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"),*/  new AutoDrive(m_driveTrain, 3.9, -0.5, 0), new AutoDrive(m_driveTrain, 4, 0, .3));
   private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
   private final BalancePIDCommand m_pidBalanceNoDrive = new BalancePIDCommand(m_driveTrain);
   private final AutoScoreHighLeave m_autoScoreHighLeave = new AutoScoreHighLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
+  private final AutoScoreLowLeave m_autoScoreLowLeave = new AutoScoreLowLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
@@ -56,23 +54,10 @@ public class RobotContainer {
   private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, 0.8, 0.8, driver);
   private final Spinjitsu m_spinjitsu1 = new Spinjitsu(m_driveTrain, 1, driver);
 
-  //command groups
-  private final SequentialCommandGroup m_lowCommandGroup =  new SequentialCommandGroup(new SetTiltCommand(m_wristSubsystem, "home"), new SetArmCommand(m_armSubsystem, "low"), new WaitCommand(.5), new SetTiltCommand(m_wristSubsystem, "low"));
-  private final SequentialCommandGroup m_midCommandGroup =  new SequentialCommandGroup(new SetTiltCommand(m_wristSubsystem, "home"), new WaitCommand(.5), new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(.5), new SetTiltCommand(m_wristSubsystem, "mid"));
-  private final SequentialCommandGroup m_highCommandGroup =  new SequentialCommandGroup(new SetTiltCommand(m_wristSubsystem, "home"), new WaitCommand(.5), new SetArmCommand(m_armSubsystem, "high"), new WaitCommand(.5), new SetTiltCommand(m_wristSubsystem, "high"));
-  private final SequentialCommandGroup m_homeCommandGroup =  new SequentialCommandGroup(new SetTiltCommand(m_wristSubsystem, "home"), new WaitCommand(.5), new SetArmCommand(m_armSubsystem, "home"));
-
-  private final SequentialCommandGroup m_lowSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "low")).beforeStarting(new SetTiltCommand(m_wristSubsystem, "low"));
-  private final SequentialCommandGroup m_midSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "mid")).beforeStarting(new SetTiltCommand(m_wristSubsystem, "mid"));
-  private final SequentialCommandGroup m_highSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "high")).beforeStarting(new SetTiltCommand(m_wristSubsystem, "high"));
-  private final SequentialCommandGroup m_homeSequence = new SetTiltCommand(m_wristSubsystem, "home").beforeStarting(new SetArmCommand(m_armSubsystem, "home"));
-  private final SequentialCommandGroup m_fiddlingAround = new SequentialCommandGroup(new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "high"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "mid"), new WaitCommand(1), new SetArmCommand(m_armSubsystem, "home"));
-
   private final AutoBalanceCommandGroup m_pidbalance = new AutoBalanceCommandGroup(m_driveTrain);
   public RobotContainer() {
     //default commands
     m_driveTrain.setDefaultCommand(m_arcadeDefault);
-    //m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, operator));
     m_clawV3Subsystem.setDefaultCommand(new ManualClawV3RunCommand(m_clawV3Subsystem, operator));
     m_wristSubsystem.setDefaultCommand(new ManualTiltCommand(m_wristSubsystem, operator));
     m_ledsSubsystem.setDefaultCommand(new ManualLed(m_ledsSubsystem, operator));
@@ -81,6 +66,7 @@ public class RobotContainer {
     m_chooser.setDefaultOption("leave, no balance", m_autoNoBalance);
     m_chooser.addOption("drive forward, balance gyro", m_pidbalance);
     m_chooser.addOption("score high and leave, no balance", m_autoScoreHighLeave);
+    m_chooser.addOption("score low and leave, no balance", m_autoScoreLowLeave);
     m_chooser.addOption("balance gyro no drive [TESTING ONLY]", m_pidBalanceNoDrive);
 
     SmartDashboard.putData("autos", m_chooser);
@@ -113,29 +99,8 @@ public class RobotContainer {
 
     armHigh.whileHeld(new SetArmCommand(m_armSubsystem, "high"));
 
-    /*armHome.whileHeld(new SetTiltCommand(m_wristSubsystem, "home"));
-    
-    armLow.whileHeld(new SetTiltCommand(m_wristSubsystem, "low"));
-
-    armMid.whileHeld(new SetTiltCommand(m_wristSubsystem, "mid"));
-
-    armHigh.whileHeld(new SetTiltCommand(m_wristSubsystem, "high"));*/
-    
-
-    //TODO: switch to wrist manual default control
-    
-    
-    /*
-    command groups: .whenPressed
-    */
-    
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
     return m_chooser.getSelected();
   }

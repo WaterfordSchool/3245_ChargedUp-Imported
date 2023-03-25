@@ -8,7 +8,6 @@ public class ManualTiltCommand extends CommandBase{
 
     private final WristSubsystem m_tiltubsystem;
     private XboxController m_controller;
-    private double m_posToStayAt;
     
     public ManualTiltCommand(WristSubsystem tiltSubsystem, XboxController controller){
         m_tiltubsystem = tiltSubsystem;

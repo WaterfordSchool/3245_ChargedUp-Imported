@@ -1,9 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.ClawCloseSubsystem;
 
 public class ManualClawCloseCommand extends CommandBase{
@@ -31,7 +29,6 @@ public class ManualClawCloseCommand extends CommandBase{
     @Override
     public boolean isFinished(){
         return false;
-        //return (!m_controller.getRawButton(Constants.currentSlideButton));
     }
 
 }

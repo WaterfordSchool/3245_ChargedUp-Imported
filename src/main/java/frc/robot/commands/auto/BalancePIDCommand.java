@@ -8,7 +8,6 @@ public class BalancePIDCommand extends CommandBase{
 
     private final DriveTrain m_driveTrain;
     private double m_pitch;
-    private double m_yaw;
     private double m_yawSetpoint;
     double kPYaw;
     double yawOffset;
@@ -30,7 +29,6 @@ public class BalancePIDCommand extends CommandBase{
     @Override
     public void execute() {
         m_pitch = m_driveTrain.getPitch();
-        m_yaw = m_driveTrain.getYaw();
         yawOffset = m_driveTrain.getYaw();
 
         if(Math.abs(m_pitch)>.5){

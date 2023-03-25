@@ -12,15 +12,12 @@ import frc.robot.Constants;
 public class WristSubsystem extends SubsystemBase{
     public final TalonFX wrist;
     public final TalonFXSensorCollection wristEnc;
-    public boolean axisEngaged;
-    //even need this??? have wrist joint on arm
     
     //init stuff
     public WristSubsystem(){
         //arm motors/encoders
         wrist = new TalonFX(Constants.armMotorWristJointID);
         wristEnc = new TalonFXSensorCollection(wrist);
-        boolean axisEngaged = false; 
 
         //config PID
         wrist.config_kF(0, Constants.armWristkF);

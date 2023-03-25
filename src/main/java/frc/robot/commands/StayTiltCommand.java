@@ -8,11 +8,9 @@ public class StayTiltCommand extends CommandBase{
 
     private final WristSubsystem m_tiltSubsystem;
     private double m_posToStayAt;
-    private final XboxController m_controller;
     
     public StayTiltCommand(WristSubsystem tiltSubystem, XboxController controller){
         m_tiltSubsystem = tiltSubystem;
-        m_controller = controller;
         addRequirements(m_tiltSubsystem);
     }
 
