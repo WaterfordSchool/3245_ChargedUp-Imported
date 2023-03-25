@@ -10,24 +10,19 @@ public class ClawV3Subsystem extends SubsystemBase{
     private final TalonFX clawv3claw;
     
       public ClawV3Subsystem() {
-        //clawv2flange = new CANSparkMax(Constants.clawV2flangeMotorID, MotorType.kBrushless);
         clawv3claw = new TalonFX(Constants.clawV2clawMotorID);
       }
-      //TODO command
     @Override
-    public void periodic() {
-        /*SmartDashboard.putNumber("Claw Run Left Encoder Position", spinLeft.getSelectedSensorPosition());
-        SmartDashboard.putNumber("Claw Run Right Encoder Position", spinRight.getSelectedSensorPosition());*/
-    }
+    public void periodic() {}
     
     public void manualSpin(XboxController controller){
         //claw in
         if(controller.getRawAxis(3)>0){
-            clawv3claw.set(ControlMode.PercentOutput, -0.4);
+            clawv3claw.set(ControlMode.PercentOutput, -Constants.clawRunSpeed);
        }
         //claw out
         if(controller.getRawAxis(2)>0){
-            clawv3claw.set(ControlMode.PercentOutput, 0.45);
+            clawv3claw.set(ControlMode.PercentOutput, Constants.clawRunSpeed);
         }
         
         //inactive claw
@@ -42,7 +37,7 @@ public class ClawV3Subsystem extends SubsystemBase{
     }
 
     public void spit(){
-        clawv3claw.set(ControlMode.PercentOutput, .35);
+        clawv3claw.set(ControlMode.PercentOutput, Constants.clawRunSpeed);
     }
 
 }

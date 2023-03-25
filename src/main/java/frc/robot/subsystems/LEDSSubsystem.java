@@ -5,19 +5,13 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LEDSSubsystem extends SubsystemBase{
-    //motors
     Spark leds;
-    //init stuff
     public LEDSSubsystem(){
-        //claw motor/encoder
         leds = new Spark(0);
     }
 
     @Override
-    public void periodic() {
-        //put encoder positions
-        //put current value
-    }
+    public void periodic() {}
 
     public void green(){
         leds.set(.73);

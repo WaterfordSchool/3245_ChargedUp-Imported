@@ -54,14 +54,7 @@ public class ClawV2Subsystem extends SubsystemBase{
         //clawv2claw.set(0.6*controller.getRawAxis(Constants.manualClawCloseAxis));
 
     }
-    public void closeWithLimSwitch(){
-        if(!limSwitchClaw.get()){
-            clawv2claw.set(-Constants.clawContactCurrentValue);
-        }
-        if(limSwitchClaw.get()){
-            clawv2claw.set(0);
-        }
-    }
+    
 
     public boolean getLimSwitch(){
         return limSwitchClaw.get();

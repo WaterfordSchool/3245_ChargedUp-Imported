@@ -35,7 +35,6 @@ public class WristSubsystem extends SubsystemBase{
     public void periodic() {
         SmartDashboard.putNumber("wrist Encoder Absolute Position", wristEnc.getIntegratedSensorAbsolutePosition());
         SmartDashboard.putNumber("wrist Encoder Position", wristEnc.getIntegratedSensorPosition());
-       // wrist.set(ControlMode.PercentOutput, 0.03);
     }
     
     public void resetEncoder(){
@@ -69,7 +68,7 @@ public class WristSubsystem extends SubsystemBase{
     }
     
     public boolean isAxisEngaged(XboxController controller){
-        return controller.getRawAxis(Constants.manualTiltAxis) != 0;
+        return controller.getRawAxis(Constants.manualwristAxis) != 0;
     }
 
     public double getCurrentPosition(){
@@ -77,10 +76,6 @@ public class WristSubsystem extends SubsystemBase{
     }
 
     public void moveManual(XboxController controller){
-        //wrist manually
-        //boolean axisengaged controller.getrawaxis == 0;
-        //false = 1
-        //false * 0.1
-            wrist.set(ControlMode.PercentOutput, -Constants.tiltMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
+            wrist.set(ControlMode.PercentOutput, -Constants.wristMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
     }
 }

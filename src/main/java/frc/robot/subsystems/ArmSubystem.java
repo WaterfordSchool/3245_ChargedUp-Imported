@@ -24,33 +24,27 @@ public class ArmSubystem extends SubsystemBase{
         //arm motors/encoders
         armMotorShoulderMaster = new TalonFX(Constants.armMotorShoulderMasterID);
         armMotorShoulderSlave = new TalonFX(Constants.armMotorShoulderSlaveID);
-        shoulderPID = new PIDController(Constants.armBasekP, Constants.armBasekI, Constants.armBasekD);
+        shoulderPID = new PIDController(Constants.armShoulderkP, Constants.armShoulderkI, Constants.armShoulderkD);
         shoulderIntegratedEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
         encoderDistance = 0;
         encoderSetPoint = 0;
 
-        //yellow in port 3
-        //blue in port 2
-        //armShoulderEnc = new TalonFXSensorCollection(armMotorShoulderMaster);
-
         //pid
-        armMotorShoulderMaster.config_kF(0, 0);
-        armMotorShoulderMaster.config_kP(0, 0.1);
-        armMotorShoulderMaster.config_kI(0, 0);
-        armMotorShoulderMaster.config_kD(0, 0.2);
+        armMotorShoulderMaster.config_kF(0, Constants.armShoulderkF);
+        armMotorShoulderMaster.config_kP(0, Constants.armShoulderkP);
+        armMotorShoulderMaster.config_kI(0, Constants.armShoulderkI);
+        armMotorShoulderMaster.config_kD(0, Constants.armShoulderkD);
 
         //config max output
-        armMotorShoulderMaster.configClosedLoopPeakOutput(0, Constants.armBaseClosedMaxOutput);
-        armMotorShoulderMaster.configPeakOutputForward(0.25);
-        armMotorShoulderMaster.configPeakOutputReverse(-0.25);
-        armMotorShoulderSlave.configClosedLoopPeakOutput(0, Constants.armBaseClosedMaxOutput);
-        armMotorShoulderSlave.configPeakOutputForward(0.25);
-        armMotorShoulderSlave.configPeakOutputReverse(-0.25);
+        armMotorShoulderMaster.configClosedLoopPeakOutput(0, Constants.armShoulderClosedMaxOutput);
+        armMotorShoulderMaster.configPeakOutputForward(Constants.armShoulderPeakOutputFor);
+        armMotorShoulderMaster.configPeakOutputReverse(-Constants.armShoulderPeakOutputFor);
+        armMotorShoulderSlave.configClosedLoopPeakOutput(0, Constants.armShoulderClosedMaxOutput);
+        armMotorShoulderSlave.configPeakOutputForward(Constants.armShoulderPeakOutputFor);
+        armMotorShoulderSlave.configPeakOutputReverse(-Constants.armShoulderPeakOutputFor);
         //armMotorShoulderMaster.configOpenloopRamp(0.7);
-        //armMotorShoulderMaster.configClosedloopRamp(Constants.armBaseClosedRampRate);
+        //armMotorShoulderMaster.configClosedloopRamp(Constants.armShoulderClosedRampRate);
 
-        //armMotorShoulderMaster.setInverted(true);
-        //armMotorShoulderSlave.setInverted(true);
         armMotorShoulderSlave.follow(armMotorShoulderMaster);
     }
 
