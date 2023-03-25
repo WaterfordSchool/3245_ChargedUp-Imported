@@ -33,6 +33,16 @@ public final class Constants {
         public static final double armShoulderPeakOutputFor = 0.25;
 
         public static final double wristMaxOutput = 0.60;
+    
+    //drive speeds
+        public static final double fastDriveSpeed = 1;
+        public static final double fastTurnSpeed = 0.725;
+
+        public static final double slowDriveSpeed = 0.4;
+        public static final double slowTurnSpeed = 0.4;
+
+        public static final double regDriveSpeed = 0.8;
+        public static final double regTurnSpeed = 0.8;
 
     //gains, ramping
         public static final double driveRampRate = 0.3;

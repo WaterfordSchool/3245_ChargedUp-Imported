@@ -49,9 +49,9 @@ public class RobotContainer {
   private final AutoScoreLowLeave m_autoScoreLowLeave = new AutoScoreLowLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
 
   //drive commands
-  private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, 1, 0.725, driver);
-  private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, 0.4, 0.4, driver);
-  private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, 0.8, 0.8, driver);
+  private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, Constants.fastDriveSpeed, Constants.fastTurnSpeed, driver);
+  private final ArcadeDrive m_slowDrive = new ArcadeDrive(m_driveTrain, Constants.slowDriveSpeed, Constants.slowTurnSpeed, driver);
+  private final ArcadeDrive m_arcadeDefault = new ArcadeDrive(m_driveTrain, Constants.regDriveSpeed, Constants.regTurnSpeed, driver);
   private final Spinjitsu m_spinjitsu1 = new Spinjitsu(m_driveTrain, 1, driver);
 
   private final AutoBalanceCommandGroup m_pidbalance = new AutoBalanceCommandGroup(m_driveTrain);
