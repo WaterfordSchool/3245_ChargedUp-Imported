@@ -24,7 +24,6 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LEDSSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -43,7 +42,8 @@ public class RobotContainer {
   private final LEDSSubsystem m_ledsSubsystem = new LEDSSubsystem();
   //commands
   //auto command
-  private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
+  //private final Command m_autoNoBalance = new SequentialCommandGroup(/*new SetArmCommand(m_armSubsystem, "high", operator), new SetTiltCommand(m_wristSubsystem, "high"), new SetSpitClawV2Command(m_clawV2Subsystem, 1), new SetTiltCommand(m_wristSubsystem, "home"), new SetTiltCommand(m_wristSubsystem, "low"), new SetSpitClawV2Command(m_clawV2Subsystem, 1),*/ new AutoDrive(m_driveTrain, 3.8, 0.5, 0));
+  private final AutoDrive m_autoNoBalance = new AutoDrive(m_driveTrain, 3.8, 0.5, 0);
   private final BalancePIDCommand m_pidBalanceNoDrive = new BalancePIDCommand(m_driveTrain);
   private final AutoScoreHighLeave m_autoScoreHighLeave = new AutoScoreHighLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
   private final AutoScoreLowLeave m_autoScoreLowLeave = new AutoScoreLowLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
