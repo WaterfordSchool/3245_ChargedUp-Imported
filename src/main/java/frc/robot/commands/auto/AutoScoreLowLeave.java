@@ -27,8 +27,8 @@ public class AutoScoreLowLeave extends SequentialCommandGroup {
             setClawRun,
             new WaitCommand(1),
             setWristHome,
-            new WaitCommand(2)
-            //driveOut
+            new WaitCommand(2),
+            driveOut
         );
     }
 }

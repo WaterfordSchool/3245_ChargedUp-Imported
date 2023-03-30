@@ -16,10 +16,10 @@ public class BalancePIDCommand extends CommandBase{
     public BalancePIDCommand(DriveTrain driveTrain){
         m_driveTrain = driveTrain;
         addRequirements(m_driveTrain);
-        pidController = new PIDController(0.025, 0, 0);
+        pidController = new PIDController(0.03, 0, 0);
         pidController.setSetpoint(0);
         m_yawSetpoint = 0;
-        kPYaw = 0.01;
+        kPYaw = 0.03;
     }
 
     @Override
@@ -31,10 +31,10 @@ public class BalancePIDCommand extends CommandBase{
         m_pitch = m_driveTrain.getPitch();
         yawOffset = m_driveTrain.getYaw();
 
-        if(Math.abs(m_pitch)>.5){
-            m_driveTrain.closedArcadeDrive(pidController.calculate(m_pitch), m_yawSetpoint-(kPYaw*yawOffset));
+        if(Math.abs(m_pitch)>.6){
+            m_driveTrain.closedArcadeDrive(pidController.calculate(m_pitch), 0);
         } else {
-            m_driveTrain.closedArcadeDrive(0, m_yawSetpoint-(kPYaw*yawOffset));
+            m_driveTrain.closedArcadeDrive(0, 0);
             pidController.reset();
         }
    }

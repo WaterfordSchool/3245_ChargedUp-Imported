@@ -29,12 +29,12 @@ public final class Constants {
 
         public static final double clawCloseMaxVal = 0.3;
 
-        public static final double armShoulderClosedMaxOutput = 0.3;
-        public static final double armWristClosedMaxOutput = 0.45;
+        public static final double armShoulderClosedMaxOutput = 0.65;
+        public static final double armWristClosedMaxOutput = 0.65;
         public static final double armShoulderPeakOutputFor = 0.25;
 
-        public static final double wristMaxOutput = 0.6;
-    
+        public static final double wristMaxOutput = 0.95;
+
     //drive speeds
         public static final double fastDriveSpeed = 1;
         public static final double fastTurnSpeed = 0.725;
@@ -113,24 +113,26 @@ public final class Constants {
 
     //encoder values
         public static final double shoulderUpPos = 89000;
+        public static final double shoulderUPAutoConePos = 89000;
         public static final double shoulderMidPos = 75000;
         public static final double shoulderDownPos = 20000;
         public static final double shoulderHomePos = 0;
 
         public static final double wristUpPos = -260000;
+        public static final double wristAutoConeHigh = -300000;
         public static final double wristMidPos = -49000;
         public static final double wristDownPos = -157000;
         public static final double wristHomePos = 0;
 
     //AUTO
     //auto thresholds
-        public static final double angleThresh1 = 10;
+        public static final double angleThresh1 = 9;
         public static final double angleThresh2 = 12;
         public static final double angleThresh3 = 14;
         public static final double angleThreshStop = 1;
 
     //auto speeds
-        public static final double autoSpeed1 = 0.55;
+        public static final double autoSpeed1 = 0.65;
         public static final double autoSpeed2 = 0.2;
         public static final double autoSpeed3 = 0.1;
 

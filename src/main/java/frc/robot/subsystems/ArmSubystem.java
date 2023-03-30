@@ -81,6 +81,10 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster.set(ControlMode.Position, 0);
     }
 
+    public void moveHighAutoCone(){
+        armMotorShoulderMaster.set(ControlMode.Position, -Constants.shoulderUpPos);
+    }
+
     public void moveManual(XboxController controller){
         //move arm manually
         armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));

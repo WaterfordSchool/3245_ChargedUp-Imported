@@ -13,9 +13,9 @@ import frc.robot.subsystems.WristSubsystem;
 public class AutoScoreHighLeave extends SequentialCommandGroup {
     public AutoScoreHighLeave(DriveTrain driveTrain, ArmSubystem armSubystem, WristSubsystem wristSubsystem, ClawV3Subsystem clawSubsystem){
 
-        SetArmCommand setArmHigh = new SetArmCommand(armSubystem, "high");  
+        SetArmCommand setArmHigh = new SetArmCommand(armSubystem, "auto high");  
         WaitCommand wait = new WaitCommand(2);
-        SetTiltCommand setWristHigh = new SetTiltCommand(wristSubsystem, "high");  
+        SetTiltCommand setWristHigh = new SetTiltCommand(wristSubsystem, "auto high");  
         SetTiltCommand setWristHomeInit = new SetTiltCommand(wristSubsystem, "home");
         SetClawV3RunCommand setClawRun = new SetClawV3RunCommand(clawSubsystem, 1);
         SetTiltCommand setWristHome = new SetTiltCommand(wristSubsystem, "home");
@@ -27,11 +27,11 @@ public class AutoScoreHighLeave extends SequentialCommandGroup {
             setWristHigh,
             new WaitCommand(3.5),
             setClawRun,
-            new WaitCommand(.5),
+            new WaitCommand(.3),
             setWristHome,
             new WaitCommand(3.5),
-            setArmHome
-            //driveOut
+            setArmHome,
+            driveOut
         );
     }
 }

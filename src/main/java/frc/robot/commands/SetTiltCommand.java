@@ -32,6 +32,9 @@ public class SetTiltCommand extends CommandBase{
         if(m_direction == "home"){
             m_tiltSubsystem.wristHome();
         }
+        if(m_direction == "auto high"){
+            m_tiltSubsystem.wristHighAuto();
+        }
     }
 
     @Override

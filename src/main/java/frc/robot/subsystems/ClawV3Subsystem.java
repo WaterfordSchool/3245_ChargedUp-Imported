@@ -18,11 +18,11 @@ public class ClawV3Subsystem extends SubsystemBase{
     public void manualSpin(XboxController controller){
         //claw in
         if(controller.getRawAxis(3)>0){
-            clawv3claw.set(ControlMode.PercentOutput, -Constants.clawRunSpeed);
+            clawv3claw.set(ControlMode.PercentOutput, Constants.clawRunSpeed);
        }
         //claw out
         if(controller.getRawAxis(2)>0){
-            clawv3claw.set(ControlMode.PercentOutput, Constants.clawRunSpeed);
+            clawv3claw.set(ControlMode.PercentOutput, -Constants.clawRunSpeed);
         }
         
         //inactive claw

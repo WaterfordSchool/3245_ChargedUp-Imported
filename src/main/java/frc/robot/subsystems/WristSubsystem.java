@@ -62,6 +62,10 @@ public class WristSubsystem extends SubsystemBase{
         //set to home encoder position
         wrist.set(ControlMode.Position, Constants.wristHomePos);
     }
+    
+    public void wristHighAuto(){
+        wrist.set(ControlMode.Position, Constants.wristAutoConeHigh);
+    }
 
     public void stay(double posToStayAt){
         wrist.set(ControlMode.Position, posToStayAt);

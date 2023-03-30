@@ -2,14 +2,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClawV1RunSubsystem;
-import frc.robot.subsystems.ClawV1CloseSubsystem;
+import frc.robot.subsystems.ClawCloseSubsystem;
 
 public class SetClawSpitCommand extends CommandBase{
 
     private final ClawV1RunSubsystem m_lobterRunSubsystem;
-    private final ClawV1CloseSubsystem m_lobterStretchSubsystem;
+    private final ClawCloseSubsystem m_lobterStretchSubsystem;
     
-    public SetClawSpitCommand(ClawV1RunSubsystem lobterRunSubsystem, ClawV1CloseSubsystem lobterStretchSubsystem){
+    public SetClawSpitCommand(ClawV1RunSubsystem lobterRunSubsystem, ClawCloseSubsystem lobterStretchSubsystem){
         m_lobterRunSubsystem = lobterRunSubsystem;
         m_lobterStretchSubsystem = lobterStretchSubsystem;
         addRequirements(m_lobterRunSubsystem);

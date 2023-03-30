@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ClawV1CloseSubsystem extends SubsystemBase{
+public class ClawCloseSubsystem extends SubsystemBase{
     public final CANSparkMax clawCloseOpenMotor;
     public final SparkMaxPIDController clawCloseOpenPID;
     public final RelativeEncoder clawcloseOpenEnc;
@@ -24,7 +24,7 @@ public class ClawV1CloseSubsystem extends SubsystemBase{
     //motors
 
     //init stuff
-    public ClawV1CloseSubsystem(){
+    public ClawCloseSubsystem(){
         //claw motor/encoder
         clawCloseOpenMotor = new CANSparkMax(Constants.clawCloseMotorID, MotorType.kBrushless);
         clawcloseOpenEnc = clawCloseOpenMotor.getEncoder();

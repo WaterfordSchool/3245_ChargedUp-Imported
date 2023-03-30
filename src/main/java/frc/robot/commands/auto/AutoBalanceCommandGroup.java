@@ -5,7 +5,7 @@ import frc.robot.subsystems.DriveTrain;
 
 public class AutoBalanceCommandGroup extends SequentialCommandGroup {
     public AutoBalanceCommandGroup(DriveTrain driveTrain){
-        AutoBalanceDriveCommand balanceDriveForward = new AutoBalanceDriveCommand(driveTrain, -0.55, 0);
+        AutoBalanceDriveCommand balanceDriveForward = new AutoBalanceDriveCommand(driveTrain, -0.7, 0);
         BalancePIDCommand balancePID = new BalancePIDCommand(driveTrain);
         
         addCommands(

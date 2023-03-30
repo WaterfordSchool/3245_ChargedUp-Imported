@@ -37,6 +37,10 @@ public class SetArmCommand extends CommandBase{
         if(m_armHeight == "reset"){
             m_armSubsystem.resetEncoders();
         }
+
+        if(m_armHeight == "auto high"){
+            m_armSubsystem.moveHighAutoCone();
+        }
     }
 
     @Override
