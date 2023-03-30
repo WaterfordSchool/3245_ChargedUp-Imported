@@ -27,7 +27,8 @@ public class ClawV3Subsystem extends SubsystemBase{
         
         //inactive claw
         if(controller.getRawAxis(3)==0 && controller.getRawAxis(2)==0){
-            clawv3claw.set(ControlMode.PercentOutput, Constants.clawConstantSpeedVal);
+            clawv3claw.set(ControlMode.PercentOutput, -Constants.clawConstantSpeedVal);
+            //swapped polarity
         }
 
     }
@@ -37,7 +38,8 @@ public class ClawV3Subsystem extends SubsystemBase{
     }
 
     public void spit(){
-        clawv3claw.set(ControlMode.PercentOutput, Constants.clawRunSpeed);
+        clawv3claw.set(ControlMode.PercentOutput, -Constants.clawSpitSpeed);
+        //swapped polarity
     }
 
 }

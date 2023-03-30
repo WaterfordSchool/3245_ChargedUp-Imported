@@ -25,14 +25,15 @@ public final class Constants {
     //motor speeds/max values
         public static final double clawConstantSpeedVal = -0.07;
         public static final double clawRunSpeed = 0.45;
+        public static final double clawSpitSpeed = 0.3;
 
         public static final double clawCloseMaxVal = 0.3;
 
         public static final double armShoulderClosedMaxOutput = 0.3;
-        public static final double armWristClosedMaxOutput = 0.2;
+        public static final double armWristClosedMaxOutput = 0.45;
         public static final double armShoulderPeakOutputFor = 0.25;
 
-        public static final double wristMaxOutput = 0.60;
+        public static final double wristMaxOutput = 0.6;
     
     //drive speeds
         public static final double fastDriveSpeed = 1;
@@ -52,7 +53,7 @@ public final class Constants {
 
         public static final double clawDriveClosedrampRate = 0.4;
 
-        public static final double wristClosedRampRate = 0.7;
+        public static final double wristClosedRampRate = 0.4;
         
     //PID
 
@@ -116,9 +117,9 @@ public final class Constants {
         public static final double shoulderDownPos = 20000;
         public static final double shoulderHomePos = 0;
 
-        public static final double wristUpPos = -66000;
+        public static final double wristUpPos = -260000;
         public static final double wristMidPos = -49000;
-        public static final double wristDownPos = -35000;
+        public static final double wristDownPos = -157000;
         public static final double wristHomePos = 0;
 
     //AUTO

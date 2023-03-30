@@ -63,10 +63,10 @@ public class RobotContainer {
     m_ledsSubsystem.setDefaultCommand(new ManualLed(m_ledsSubsystem, operator));
     
     //choosable auto
-    m_chooser.setDefaultOption("leave, no balance", m_autoNoBalance);
-    m_chooser.addOption("drive forward, balance gyro", m_pidbalance);
-    m_chooser.addOption("score high and leave, no balance", m_autoScoreHighLeave);
-    m_chooser.addOption("score low and leave, no balance", m_autoScoreLowLeave);
+    m_chooser.setDefaultOption("leave, no balance, no score", m_autoNoBalance);
+    m_chooser.addOption("drive forward, balance gyro [FACING AWAY FROM YOU]", m_pidbalance);
+    m_chooser.addOption("score high and leave, no balance [FACING TOWARDS YOU]", m_autoScoreHighLeave);
+    m_chooser.addOption("score low and leave, no balance [FACING TOWARD YOU]", m_autoScoreLowLeave);
     m_chooser.addOption("balance gyro no drive [TESTING ONLY]", m_pidBalanceNoDrive);
 
     SmartDashboard.putData("autos", m_chooser);
