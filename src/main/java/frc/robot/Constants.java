@@ -24,8 +24,8 @@ public final class Constants {
         public static final int wristMotorID = 12;
     //motor speeds/max values
         public static final double clawConstantSpeedVal = -0.07;
-        public static final double clawRunSpeed = 0.45;
-        public static final double clawSpitSpeed = 0.3;
+        public static final double clawRunSpeed = 0.25;
+        public static final double clawSpitSpeed = 0.25;
 
         public static final double clawCloseMaxVal = 0.3;
 
@@ -119,7 +119,7 @@ public final class Constants {
         public static final double shoulderHomePos = 0;
 
         public static final double wristUpPos = -260000;
-        public static final double wristAutoConeHigh = -300000;
+        public static final double wristAutoConeHigh = -315000;
         public static final double wristMidPos = -49000;
         public static final double wristDownPos = -157000;
         public static final double wristHomePos = 0;
