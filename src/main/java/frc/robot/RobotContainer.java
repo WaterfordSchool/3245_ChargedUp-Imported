@@ -88,7 +88,7 @@ public class RobotContainer {
 
     fastButton.whileHeld(m_fastDrive);
     slowButton.whileHeld(m_slowDrive);
-    spinjitsuButton1.whileHeld(m_spinjitsu1);
+    //spinjitsuButton1.whileHeld(m_spinjitsu1);
   
 
     armHome.whileHeld(new SetArmCommand(m_armSubsystem, "home"));

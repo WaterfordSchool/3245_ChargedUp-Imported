@@ -41,7 +41,7 @@ public class AutoBalanceDriveCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-      return Math.abs(m_pitch)>8.7;
+      return Math.abs(m_pitch)>10;
       // end the command if gyro angle is greater than 0
       //later use PID for better accuracy, start with  bang-bang control
     }

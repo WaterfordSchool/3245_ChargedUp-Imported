@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class LEDSSubsystem extends SubsystemBase{
     Spark leds;
     public LEDSSubsystem(){
-        leds = new Spark(0);
+        leds = new Spark(9);
     }
 
     @Override
@@ -29,6 +29,14 @@ public class LEDSSubsystem extends SubsystemBase{
         leds.set(.55);
     }
 
+    public void yellow(){
+        leds.set(0.69);
+    }
+
+    public void purple(){
+        leds.set(0.91);
+    }
+
     public void flames(){
         leds.set(-0.59);
     }
@@ -46,22 +54,19 @@ public class LEDSSubsystem extends SubsystemBase{
     }
 
     public void manualControl(XboxController controller){
-        if(controller.getPOV()==0){
-            leds.set(0.61);
-            //red
+        if(controller.getRawButton(8)){
+            leds.set(0.69);
+            //yellow
         }
-        if(controller.getPOV()==90){
-            leds.set(0.83);
-            //blue
+        if(controller.getRawButton(7)){
+            leds.set(0.91);
+            //purple
         }
-        if(controller.getPOV()==180){
-            leds.set(0.73);
-            //green
-        }
-        if(controller.getPOV()==270){
+        /*if(!controller.getRawButton(7) && !controller.getRawButton(8)){
             leds.set(-0.59);
             //small flames
-        }
+        }*/
+        
         
     }
    

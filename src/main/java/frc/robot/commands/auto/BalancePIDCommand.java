@@ -16,7 +16,7 @@ public class BalancePIDCommand extends CommandBase{
     public BalancePIDCommand(DriveTrain driveTrain){
         m_driveTrain = driveTrain;
         addRequirements(m_driveTrain);
-        pidController = new PIDController(0.03, 0, 0);
+        pidController = new PIDController(0.033, 0, 0);
         pidController.setSetpoint(0);
         m_yawSetpoint = 0;
         kPYaw = 0.03;

@@ -28,10 +28,10 @@ public class AutoScoreHighLeave extends SequentialCommandGroup {
             new WaitCommand(3.5),
             setClawRun,
             new WaitCommand(.3),
+            driveOut,
             setWristHome,
             new WaitCommand(3.5),
-            setArmHome,
-            driveOut
+            setArmHome
         );
     }
 }

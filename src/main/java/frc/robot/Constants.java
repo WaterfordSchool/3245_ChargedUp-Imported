@@ -112,14 +112,14 @@ public final class Constants {
         public static final int wristStayButton = 6;
 
     //encoder values
-        public static final double shoulderUpPos = 89000;
+        public static final double shoulderUpPos = 91000;
         public static final double shoulderUPAutoConePos = 89000;
         public static final double shoulderMidPos = 75000;
         public static final double shoulderDownPos = 20000;
         public static final double shoulderHomePos = 0;
 
         public static final double wristUpPos = -260000;
-        public static final double wristAutoConeHigh = -315000;
+        public static final double wristAutoConeHigh = -300000;
         public static final double wristMidPos = -49000;
         public static final double wristDownPos = -157000;
         public static final double wristHomePos = 0;

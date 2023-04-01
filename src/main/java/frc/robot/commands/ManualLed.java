@@ -21,9 +21,10 @@ public class ManualLed extends CommandBase{
         
     @Override
     public void execute() {
-        m_ledsSubsystem.manualControl(m_controller);
+       m_ledsSubsystem.manualControl(m_controller);
+       //m_ledsSubsystem.yellow();
     }
-
+//8 yellow, 7 purple
     @Override
     public void end(boolean interrupted){}
 
