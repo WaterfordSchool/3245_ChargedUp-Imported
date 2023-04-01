@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.SetArmCommand;
 import frc.robot.commands.SetClawV3RunCommand;
-import frc.robot.commands.SetTiltCommand;
+import frc.robot.commands.SetWristCommand;
 import frc.robot.subsystems.ArmSubystem;
 import frc.robot.subsystems.ClawV3Subsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -15,12 +15,12 @@ public class AutoScoreHighLeave extends SequentialCommandGroup {
 
         SetArmCommand setArmHigh = new SetArmCommand(armSubystem, "auto high");  
         WaitCommand wait = new WaitCommand(2);
-        SetTiltCommand setWristHigh = new SetTiltCommand(wristSubsystem, "auto high");  
-        SetTiltCommand setWristHomeInit = new SetTiltCommand(wristSubsystem, "home");
+        SetWristCommand setWristHigh = new SetWristCommand(wristSubsystem, "auto high");  
+        SetWristCommand setWristHomeInit = new SetWristCommand(wristSubsystem, "home");
         SetClawV3RunCommand setClawRun = new SetClawV3RunCommand(clawSubsystem, 1);
-        SetTiltCommand setWristHome = new SetTiltCommand(wristSubsystem, "home");
+        SetWristCommand setWristHome = new SetWristCommand(wristSubsystem, "home");
         SetArmCommand setArmHome = new SetArmCommand(armSubystem, "home");
-        AutoDrive driveOut = new AutoDrive(driveTrain, 3.8, 0.5, 0);
+        AutoDrive driveOut = new AutoDrive(driveTrain, 4.2, 0.5, 0);
         addCommands(
             setArmHigh,
             new WaitCommand(2),

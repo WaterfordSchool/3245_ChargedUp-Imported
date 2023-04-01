@@ -26,10 +26,11 @@ public final class Constants {
         public static final double clawConstantSpeedVal = -0.07;
         public static final double clawRunSpeed = 0.25;
         public static final double clawSpitSpeed = 0.25;
+        public static final double clawSpitHardSpeed = 0.75;
 
         public static final double clawCloseMaxVal = 0.3;
 
-        public static final double armShoulderClosedMaxOutput = 0.65;
+        public static final double armShoulderClosedMaxOutput = 0.5;
         public static final double armWristClosedMaxOutput = 0.65;
         public static final double armShoulderPeakOutputFor = 0.25;
 
@@ -112,17 +113,19 @@ public final class Constants {
         public static final int wristStayButton = 6;
 
     //encoder values
-        public static final double shoulderUpPos = 91000;
-        public static final double shoulderUPAutoConePos = 89000;
-        public static final double shoulderMidPos = 75000;
-        public static final double shoulderDownPos = 20000;
+        public static final double shoulderUpPos = 56000;
+        public static final double shoulderUPAutoConePos = 51000;
+        public static final double shoulderMidPos = 43000;
+        public static final double shoulderDownPos = 8000;
         public static final double shoulderHomePos = 0;
+        public static final double shoulderFunnyAutoPos = 100000;
 
         public static final double wristUpPos = -260000;
         public static final double wristAutoConeHigh = -300000;
         public static final double wristMidPos = -49000;
         public static final double wristDownPos = -157000;
         public static final double wristHomePos = 0;
+        public static final double wristFunnyAutoPos = -10000;
 
     //AUTO
     //auto thresholds

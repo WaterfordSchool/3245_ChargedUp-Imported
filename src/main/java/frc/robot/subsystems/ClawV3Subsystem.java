@@ -42,4 +42,8 @@ public class ClawV3Subsystem extends SubsystemBase{
         //swapped polarity
     }
 
+    public void spitHard(){
+        clawv3claw.set(ControlMode.PercentOutput, -Constants.clawSpitHardSpeed);
+    }
+
 }

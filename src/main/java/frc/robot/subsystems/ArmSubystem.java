@@ -90,4 +90,9 @@ public class ArmSubystem extends SubsystemBase{
         armMotorShoulderMaster.set(ControlMode.PercentOutput, 0.2*controller.getRawAxis(Constants.manualShoulderAxis));
         armMotorShoulderSlave.follow(armMotorShoulderMaster);
     }
+
+    public void funnyAuto(){
+        //set arm to funny auto pos
+        armMotorShoulderMaster.set(ControlMode.Position, -Constants.shoulderFunnyAutoPos);
+    }
 }

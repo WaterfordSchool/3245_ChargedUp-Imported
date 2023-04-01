@@ -15,6 +15,7 @@ import frc.robot.commands.SetArmCommand;
 import frc.robot.commands.Spinjitsu;
 import frc.robot.commands.auto.AutoBalanceCommandGroup;
 import frc.robot.commands.auto.AutoDrive;
+import frc.robot.commands.auto.AutoFunny;
 import frc.robot.commands.auto.AutoScoreHighLeave;
 import frc.robot.commands.auto.AutoScoreLowLeave;
 import frc.robot.commands.auto.BalancePIDCommand;
@@ -47,6 +48,7 @@ public class RobotContainer {
   private final BalancePIDCommand m_pidBalanceNoDrive = new BalancePIDCommand(m_driveTrain);
   private final AutoScoreHighLeave m_autoScoreHighLeave = new AutoScoreHighLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
   private final AutoScoreLowLeave m_autoScoreLowLeave = new AutoScoreLowLeave(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
+  //private final AutoFunny m_autoFunny = new AutoFunny(m_driveTrain, m_armSubsystem, m_wristSubsystem, m_clawV3Subsystem);
 
   //drive commands
   private final ArcadeDrive m_fastDrive = new ArcadeDrive(m_driveTrain, Constants.fastDriveSpeed, Constants.fastTurnSpeed, driver);
@@ -68,6 +70,7 @@ public class RobotContainer {
     m_chooser.addOption("score high and leave, no balance [FACING TOWARDS YOU]", m_autoScoreHighLeave);
     m_chooser.addOption("score low and leave, no balance [FACING TOWARD YOU]", m_autoScoreLowLeave);
     m_chooser.addOption("balance gyro no drive [TESTING ONLY]", m_pidBalanceNoDrive);
+    //m_chooser.addOption("goofy ass shoot backwards then balance [FACING AWAY FROM YOU]", m_autoFunny);
 
     SmartDashboard.putData("autos", m_chooser);
 

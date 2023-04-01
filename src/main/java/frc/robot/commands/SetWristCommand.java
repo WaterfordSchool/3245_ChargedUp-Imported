@@ -3,12 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.WristSubsystem;
 
-public class SetTiltCommand extends CommandBase{
+public class SetWristCommand extends CommandBase{
 
     private final WristSubsystem m_tiltSubsystem;
     private final String m_direction;
     
-    public SetTiltCommand(WristSubsystem tiltSubystem, String direction){
+    public SetWristCommand(WristSubsystem tiltSubystem, String direction){
         m_tiltSubsystem = tiltSubystem;
         m_direction = direction;
         addRequirements(m_tiltSubsystem);
@@ -34,6 +34,9 @@ public class SetTiltCommand extends CommandBase{
         }
         if(m_direction == "auto high"){
             m_tiltSubsystem.wristHighAuto();
+        }
+        if(m_direction == "funny auto"){
+            m_tiltSubsystem.wristFunnyAuto();
         }
     }
 

@@ -41,6 +41,10 @@ public class SetArmCommand extends CommandBase{
         if(m_armHeight == "auto high"){
             m_armSubsystem.moveHighAutoCone();
         }
+
+        if(m_armHeight == "funny auto"){
+            m_armSubsystem.funnyAuto();
+        }
     }
 
     @Override

@@ -82,4 +82,8 @@ public class WristSubsystem extends SubsystemBase{
     public void moveManual(XboxController controller){
             wrist.set(ControlMode.PercentOutput, -Constants.wristMaxOutput*controller.getRawAxis(Constants.manualWristAxis));
     }
+
+    public void wristFunnyAuto(){
+        wrist.set(ControlMode.Position, Constants.wristFunnyAutoPos);
+    }
 }
